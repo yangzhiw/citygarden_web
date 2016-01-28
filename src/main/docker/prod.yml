@@ -1,0 +1,7 @@
+citygarden_web-mongodb:
+  container_name: citygarden_web-mongodb
+  image: mongo:3.0.7
+  # volumes:
+  #   - ~/volumes/jhipster/citygarden_web/mongodb/:/data/db/
+  ports:
+    - "27017:27017"

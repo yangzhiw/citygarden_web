@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "citygarden_web",
+    "packageName": "com.citygarden",
+    "packageFolder": "com/citygarden",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useSass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "20ef87bc0d615edcf8a40175030893910828cfcf",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
