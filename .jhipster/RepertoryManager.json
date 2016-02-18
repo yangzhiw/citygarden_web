@@ -1,0 +1,23 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "nowCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "totalCount",
+            "fieldType": "Long"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}

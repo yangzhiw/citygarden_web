@@ -1,0 +1,60 @@
+<div>
+    <h2 translate="citygardenWebApp.repertoryManager.home.title">RepertoryManagers</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="repertoryManager.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+                        translate="citygardenWebApp.repertoryManager.home.createLabel">Create new RepertoryManager
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="citygardenWebApp.repertoryManager.name">Name</span></th>
+                    <th><span translate="citygardenWebApp.repertoryManager.nowCount">NowCount</span></th>
+                    <th><span translate="citygardenWebApp.repertoryManager.totalCount">TotalCount</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repertoryManager in repertoryManagers track by repertoryManager.id">
+                    <td><a ui-sref="repertoryManager.detail({id:repertoryManager.id})">{{repertoryManager.id}}</a></td>
+                    <td>{{repertoryManager.name}}</td>
+                    <td>{{repertoryManager.nowCount}}</td>
+                    <td>{{repertoryManager.totalCount}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="repertoryManager.detail({id:repertoryManager.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="repertoryManager.edit({id:repertoryManager.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="repertoryManager.delete({id:repertoryManager.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

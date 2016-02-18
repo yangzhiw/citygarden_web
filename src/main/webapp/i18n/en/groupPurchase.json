@@ -1,0 +1,21 @@
+{
+    "citygardenWebApp": {
+        "groupPurchase" : {
+            "home": {
+                "title": "GroupPurchases",
+                "createLabel": "Create a new GroupPurchase",
+                "createOrEditLabel": "Create or edit a GroupPurchase",
+                "search": "Search for GroupPurchase"
+            },
+            "created": "A new GroupPurchase is created with identifier {{ param }}",
+            "updated": "A GroupPurchase is updated with identifier {{ param }}",
+            "deleted": "A GroupPurchase is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete GroupPurchase {{ id }}?"
+            },
+            "detail": {
+                "title": "GroupPurchase"
+            }
+        }
+    }
+}

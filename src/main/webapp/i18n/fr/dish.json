@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "dish" : {
+            "home": {
+                "title": "Dishs",
+                "createLabel": "Créer un nouveau Dish",
+                "createOrEditLabel": "Créer ou éditer un Dish",
+                "search": "Search for Dish"
+            },
+            "created": "Un nouveau Dish a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Dish avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Dish avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Dish {{ id }} ?"
+            },
+            "detail": {
+                "title": "Dish"
+            }
+        }
+    }
+}
+

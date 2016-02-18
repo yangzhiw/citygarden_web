@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "vegetableProvide" : {
+            "home": {
+                "title": "VegetableProvides",
+                "createLabel": "Créer un nouveau VegetableProvide",
+                "createOrEditLabel": "Créer ou éditer un VegetableProvide",
+                "search": "Search for VegetableProvide"
+            },
+            "created": "Un nouveau VegetableProvide a été créé avec l'identifiant {{ param }}",
+            "updated": "Le VegetableProvide avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le VegetableProvide avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le VegetableProvide {{ id }} ?"
+            },
+            "detail": {
+                "title": "VegetableProvide"
+            }
+        }
+    }
+}
+

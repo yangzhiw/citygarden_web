@@ -7,6 +7,14 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
+                "deliveryAddress": "DeliveryAddress",
+                "orderItem": "OrderItem",
+                "order": "Order",
+                "dish": "Dish",
+                "announcement": "Announcement",
+                "repertoryManager": "RepertoryManager",
+                "groupPurchase": "GroupPurchase",
+                "vegetableProvide": "VegetableProvide",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

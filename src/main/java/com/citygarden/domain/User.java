@@ -34,7 +34,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @JsonIgnore
     @NotNull
-    @Size(min = 60, max = 60) 
+    @Size(min = 60, max = 60)
     private String password;
 
     @Size(max = 50)
@@ -48,6 +48,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Email
     @Size(max = 100)
     private String email;
+
+    private String mobile;
 
     private boolean activated = false;
 
@@ -116,6 +118,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public boolean getActivated() {
@@ -196,6 +206,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
+            ", mobile='" +mobile + '\'' +
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +

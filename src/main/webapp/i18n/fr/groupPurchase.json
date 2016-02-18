@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "groupPurchase" : {
+            "home": {
+                "title": "GroupPurchases",
+                "createLabel": "Créer un nouveau GroupPurchase",
+                "createOrEditLabel": "Créer ou éditer un GroupPurchase",
+                "search": "Search for GroupPurchase"
+            },
+            "created": "Un nouveau GroupPurchase a été créé avec l'identifiant {{ param }}",
+            "updated": "Le GroupPurchase avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le GroupPurchase avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le GroupPurchase {{ id }} ?"
+            },
+            "detail": {
+                "title": "GroupPurchase"
+            }
+        }
+    }
+}
+

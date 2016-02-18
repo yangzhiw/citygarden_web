@@ -1,0 +1,21 @@
+{
+    "citygardenWebApp": {
+        "deliveryAddress" : {
+            "home": {
+                "title": "DeliveryAddresss",
+                "createLabel": "Create a new DeliveryAddress",
+                "createOrEditLabel": "Create or edit a DeliveryAddress",
+                "search": "Search for DeliveryAddress"
+            },
+            "created": "A new DeliveryAddress is created with identifier {{ param }}",
+            "updated": "A DeliveryAddress is updated with identifier {{ param }}",
+            "deleted": "A DeliveryAddress is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete DeliveryAddress {{ id }}?"
+            },
+            "detail": {
+                "title": "DeliveryAddress"
+            }
+        }
+    }
+}

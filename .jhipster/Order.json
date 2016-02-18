@@ -1,0 +1,13 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "priceCount",
+            "fieldType": "Double"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}
