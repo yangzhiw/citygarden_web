@@ -15,6 +15,8 @@
                 "repertoryManager": "RepertoryManager",
                 "groupPurchase": "GroupPurchase",
                 "vegetableProvide": "VegetableProvide",
+                "cart": "Cart",
+                "cartDetails": "CartDetails",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

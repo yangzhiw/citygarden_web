@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "cartDetails" : {
+            "home": {
+                "title": "CartDetailss",
+                "createLabel": "Créer un nouveau CartDetails",
+                "createOrEditLabel": "Créer ou éditer un CartDetails",
+                "search": "Search for CartDetails"
+            },
+            "created": "Un nouveau CartDetails a été créé avec l'identifiant {{ param }}",
+            "updated": "Le CartDetails avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le CartDetails avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le CartDetails {{ id }} ?"
+            },
+            "detail": {
+                "title": "CartDetails"
+            }
+        }
+    }
+}
+
