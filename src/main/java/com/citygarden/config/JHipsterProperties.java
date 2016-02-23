@@ -185,7 +185,7 @@ public class JHipsterProperties {
 
     public static class Mail {
 
-        private String from = "citygarden_web@localhost";
+        private String from = "993505105@qq.com";
 
         public String getFrom() {
             return from;

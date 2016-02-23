@@ -23,7 +23,14 @@ spring:
             uri: mongodb://localhost:27017
             database: citygarden_web
     mail:
-        host: localhost
+        host: smtp.qq.com
+        port: 587
+        username: 993505105@qq.com
+        password: hugntajdklvlbfgf
+        protocol: smtp
+        tls: true
+        auth: true
+        from: 993505105@qq.com
     messages:
         cache-seconds: 1
     thymeleaf:
