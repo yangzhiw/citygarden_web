@@ -148,6 +148,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
+            "132222211111",
             "joe@example.com",      // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -173,6 +174,7 @@ public class AccountResourceIntTest {
             "Funky",                // firstName
             "One",                  // lastName
             "funky@example.com",    // e-mail
+            "132222211111",
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
@@ -197,6 +199,7 @@ public class AccountResourceIntTest {
             "Bob",              // firstName
             "Green",            // lastName
             "invalid",          // e-mail <-- invalid
+            "132222211111",
             true,               // activated
             "en",               // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
@@ -222,6 +225,7 @@ public class AccountResourceIntTest {
             "Alice",                // firstName
             "Something",            // lastName
             "alice@example.com",    // e-mail
+            "132222211111",
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
@@ -229,7 +233,7 @@ public class AccountResourceIntTest {
 
         // Duplicate login, different e-mail
         UserDTO dup = new UserDTO(u.getLogin(), u.getPassword(), u.getLogin(), u.getLastName(),
-            "alicejr@example.com", true, u.getLangKey(), u.getAuthorities());
+            "alicejr@example.com","", true, u.getLangKey(), u.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -259,6 +263,7 @@ public class AccountResourceIntTest {
             "John",                 // firstName
             "Doe",                  // lastName
             "john@example.com",     // e-mail
+            "132222211111",
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
@@ -266,7 +271,7 @@ public class AccountResourceIntTest {
 
         // Duplicate e-mail, different login
         UserDTO dup = new UserDTO("johnjr", u.getPassword(), u.getLogin(), u.getLastName(),
-            u.getEmail(), true, u.getLangKey(), u.getAuthorities());
+            u.getEmail(),u.getMobile(), true, u.getLangKey(), u.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -295,6 +300,7 @@ public class AccountResourceIntTest {
             "Bad",                  // firstName
             "Guy",                  // lastName
             "badguy@example.com",   // e-mail
+            "132222211111",
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.ADMIN)) // <-- only admin should be able to do that

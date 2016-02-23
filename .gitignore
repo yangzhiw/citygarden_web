@@ -129,3 +129,4 @@ Desktop.ini
 !.mvn/wrapper/maven-wrapper.jar
 .bowerrc
 src/main/webapp/bower_components/
+src/main/webapp/.idea/
