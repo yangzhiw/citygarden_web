@@ -1,17 +1,20 @@
 package com.citygarden.domain;
 
+import com.mongodb.gridfs.GridFSInputFile;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.File;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
  * A Dish.
  */
 
-@Document(collection = "dish")
+@Document(collection = "T_DISH")
 public class Dish implements Serializable {
 
     @Id

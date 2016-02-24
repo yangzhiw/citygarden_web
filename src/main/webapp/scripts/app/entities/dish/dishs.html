@@ -6,7 +6,7 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="dish.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span 
+                    <span
                         translate="citygardenWebApp.dish.home.createLabel">Create new Dish
                     </span>
                 </button>
@@ -29,7 +29,7 @@
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="dish.detail({id:dish.id})"
-                                    class="btn btn-info btn-sm"> 
+                                    class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
@@ -41,14 +41,23 @@
                             </button>
                             <button type="submit"
                                     ui-sref="dish.delete({id:dish.id})"
-                                    class="btn btn-danger btn-sm">                                    
+                                    class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>
                 </tr>
+
+
             </tbody>
         </table>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <span class="checkcode" id="checkcodeIcon"></span>
+            <img ng-src="data:image/png;base64,{{dishPhoto}}"  class="captcha_image"  ng-click="loadCaptcha()"/>
+        </div>
     </div>
 </div>

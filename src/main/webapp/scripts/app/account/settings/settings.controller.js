@@ -33,6 +33,7 @@ angular.module('citygardenWebApp')
             return {
                 activated: account.activated,
                 email: account.email,
+                mobile:account.mobile,
                 firstName: account.firstName,
                 langKey: account.langKey,
                 lastName: account.lastName,

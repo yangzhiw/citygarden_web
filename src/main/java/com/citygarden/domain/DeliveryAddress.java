@@ -11,11 +11,18 @@ import java.util.Objects;
  * A DeliveryAddress.
  */
 
-@Document(collection = "delivery_address")
+@Document(collection = "T_DELIVERY_ADDRESS")
 public class DeliveryAddress implements Serializable {
 
     @Id
     private String id;
+
+    private String address;
+    @Field("is_default")
+    private String isDefault;
+
+    private String  username;
+
 
     public String getId() {
         return id;
@@ -23,6 +30,31 @@ public class DeliveryAddress implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public String getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -48,7 +80,10 @@ public class DeliveryAddress implements Serializable {
     @Override
     public String toString() {
         return "DeliveryAddress{" +
-            "id=" + id +
+            "id='" + id + '\'' +
+            ", address='" + address + '\'' +
+            ", isDefault='" + isDefault + '\'' +
+            ", username=" + username  +
             '}';
     }
 }

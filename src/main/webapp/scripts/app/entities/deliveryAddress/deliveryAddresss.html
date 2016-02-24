@@ -1,54 +1,54 @@
-<div>
-    <h2 translate="citygardenWebApp.deliveryAddress.home.title">DeliveryAddresss</h2>
-    <jh-alert></jh-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="deliveryAddress.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span 
-                        translate="citygardenWebApp.deliveryAddress.home.createLabel">Create new DeliveryAddress
-                    </span>
-                </button>
-            </div>
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-1 control-label">
+            地址
+        </label>
+        <div class="input-group col-md-3">
+            <select required="" class="form-control" ng-model="address.province" ng-options="key as key for (key,value) in division"
+                    ng-change="address.city='';address.district='';">
+                <option value="">省</option>
+            </select>
+            <select class="form-control" ng-model="address.city" ng-options="key as key for (key,value) in division[address.province]"
+                    ng-change="address.district='';">
+                <option value="">市</option>
+            </select>
+            <select class="form-control" ng-model="address.district" ng-options="value as value for value in division[address.province][address.city]">
+                <option value="">区</option>
+            </select>
         </div>
     </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr>
-                    <th><span translate="global.field.id">ID</span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="deliveryAddress in deliveryAddresss track by deliveryAddress.id">
-                    <td><a ui-sref="deliveryAddress.detail({id:deliveryAddress.id})">{{deliveryAddress.id}}</a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="deliveryAddress.detail({id:deliveryAddress.id})"
-                                    class="btn btn-info btn-sm"> 
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="deliveryAddress.edit({id:deliveryAddress.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="deliveryAddress.delete({id:deliveryAddress.id})"
-                                    class="btn btn-danger btn-sm">                                    
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="form-group">
+        <label class="col-md-1 control-label">
+            街道位置
+        </label>
+        <div  class="col-lg-6">
+            <input type="text" class="form-control" name="street" placeholder="街道位置"
+                   ng-model="address.street" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">
+            是否设置为默认地址
+        </label>
+        <div class="col-md-1">
+            <label>
+                <input type="radio" ng-model="address.isDefault" value="YES">
+                YES
+            </label>
+            <br/>
+            <label>
+                <input type="radio" ng-model="address.isDefault" value="NO">
+                NO
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary btn-sm" ng-click="submit()">
+                提交
+            </button>
+        </div>
     </div>
 </div>

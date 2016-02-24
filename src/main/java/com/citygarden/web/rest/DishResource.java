@@ -26,10 +26,10 @@ import java.util.Optional;
 public class DishResource {
 
     private final Logger log = LoggerFactory.getLogger(DishResource.class);
-        
+
     @Inject
     private DishRepository dishRepository;
-    
+
     /**
      * POST  /dishs -> Create a new dish.
      */
@@ -76,7 +76,7 @@ public class DishResource {
     public List<Dish> getAllDishs() {
         log.debug("REST request to get all Dishs");
         return dishRepository.findAll();
-            }
+     }
 
     /**
      * GET  /dishs/:id -> get the "id" dish.

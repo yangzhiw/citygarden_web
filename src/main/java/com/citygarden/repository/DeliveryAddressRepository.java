@@ -9,4 +9,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface DeliveryAddressRepository extends MongoRepository<DeliveryAddress,String> {
 
+    DeliveryAddress findByIsDefaultAndUsername(String isDefault, String username);
 }

@@ -1,5 +1,7 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.service.DeliveryAddressService;
+import com.citygarden.web.rest.dto.DeliveryAddressDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.DeliveryAddress;
 import com.citygarden.repository.DeliveryAddressRepository;
@@ -26,10 +28,13 @@ import java.util.Optional;
 public class DeliveryAddressResource {
 
     private final Logger log = LoggerFactory.getLogger(DeliveryAddressResource.class);
-        
+
     @Inject
     private DeliveryAddressRepository deliveryAddressRepository;
-    
+
+    @Inject
+    private DeliveryAddressService deliveryAddressService;
+
     /**
      * POST  /deliveryAddresss -> Create a new deliveryAddress.
      */
@@ -37,12 +42,10 @@ public class DeliveryAddressResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<DeliveryAddress> createDeliveryAddress(@RequestBody DeliveryAddress deliveryAddress) throws URISyntaxException {
+    public ResponseEntity<DeliveryAddress> createDeliveryAddress(@RequestBody DeliveryAddressDTO deliveryAddress) throws URISyntaxException {
         log.debug("REST request to save DeliveryAddress : {}", deliveryAddress);
-        if (deliveryAddress.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("deliveryAddress", "idexists", "A new deliveryAddress cannot already have an ID")).body(null);
-        }
-        DeliveryAddress result = deliveryAddressRepository.save(deliveryAddress);
+        System.err.println(deliveryAddress);
+        DeliveryAddress result = deliveryAddressService.save(deliveryAddress);
         return ResponseEntity.created(new URI("/api/deliveryAddresss/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("deliveryAddress", result.getId().toString()))
             .body(result);
@@ -57,9 +60,9 @@ public class DeliveryAddressResource {
     @Timed
     public ResponseEntity<DeliveryAddress> updateDeliveryAddress(@RequestBody DeliveryAddress deliveryAddress) throws URISyntaxException {
         log.debug("REST request to update DeliveryAddress : {}", deliveryAddress);
-        if (deliveryAddress.getId() == null) {
-            return createDeliveryAddress(deliveryAddress);
-        }
+//        if (deliveryAddress.getId() == null) {
+//            return createDeliveryAddress(deliveryAddress);
+//        }
         DeliveryAddress result = deliveryAddressRepository.save(deliveryAddress);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("deliveryAddress", deliveryAddress.getId().toString()))
