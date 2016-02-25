@@ -1,43 +1,19 @@
-package com.citygarden.domain;
+package com.citygarden.web.rest.dto;
 
-import com.mongodb.gridfs.GridFSInputFile;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.io.File;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
 
 /**
- * A Dish.
+ * Created by Administrator on 2016/2/24 0024.
  */
+public class DishDTO {
 
-@Document(collection = "T_DISH")
-public class Dish implements Serializable {
-
-    @Id
     private String id;
-
     private String name;
-
-    @Field("original_price")
     private String originalPrice;
-
-    @Field("discount_price")
     private String discountPrice;
-
-    @Field("is_discount")
     private String isDiscount;
-
-    @Field("is_gain")
     private String isGain;
-
-    @Field("is_hot")
     private String isHot;
-
-    @Field("chinese_name")
+    private String dishPhoto;
     private String chineseName;
 
     public String getId() {
@@ -56,20 +32,20 @@ public class Dish implements Serializable {
         this.name = name;
     }
 
-    public String getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(String originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
     public String getDiscountPrice() {
         return discountPrice;
     }
 
     public void setDiscountPrice(String discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    public String getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
     }
 
     public String getIsDiscount() {
@@ -96,6 +72,14 @@ public class Dish implements Serializable {
         this.isHot = isHot;
     }
 
+    public String getDishPhoto() {
+        return dishPhoto;
+    }
+
+    public void setDishPhoto(String dishPhoto) {
+        this.dishPhoto = dishPhoto;
+    }
+
     public String getChineseName() {
         return chineseName;
     }
@@ -105,28 +89,8 @@ public class Dish implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Dish dish = (Dish) o;
-        if(dish.id == null || id == null) {
-            return false;
-        }
-        return Objects.equals(id, dish.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    @Override
     public String toString() {
-        return "Dish{" +
+        return "DishDTO{" +
             "id='" + id + '\'' +
             ", name='" + name + '\'' +
             ", originalPrice='" + originalPrice + '\'' +
@@ -134,6 +98,7 @@ public class Dish implements Serializable {
             ", isDiscount='" + isDiscount + '\'' +
             ", isGain='" + isGain + '\'' +
             ", isHot='" + isHot + '\'' +
+            ", dishPhoto='" + dishPhoto + '\'' +
             ", chineseName='" + chineseName + '\'' +
             '}';
     }

@@ -1,63 +1,17 @@
 <div>
-    <h2 translate="citygardenWebApp.dish.home.title">Dishs</h2>
-    <jh-alert></jh-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="dish.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span
-                        translate="citygardenWebApp.dish.home.createLabel">Create new Dish
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr>
-                    <th><span translate="global.field.id">ID</span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="dish in dishs track by dish.id">
-                    <td><a ui-sref="dish.detail({id:dish.id})">{{dish.id}}</a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="dish.detail({id:dish.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="dish.edit({id:dish.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="dish.delete({id:dish.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-
-            </tbody>
-        </table>
-    </div>
-
     <div>
-        <div class="form-group">
-            <span class="checkcode" id="checkcodeIcon"></span>
-            <img ng-src="data:image/png;base64,{{dishPhoto}}"  class="captcha_image"  ng-click="loadCaptcha()"/>
+        <h2 class="col-md-offset-5">菜品列表</h2>
+    </div>
+    <div class="col-md-12 inner">
+        <br/>
+        <br/>
+        <div ng-repeat="dish in dishs track by dish.id" ui-sref="cartDetails.detail({id:cartDetails.id})">
+            <div>
+                <img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"  class="captcha_image col-md-3"/>
+            </div>
+            <div>
+                <span>{{dish.chineseName}}</span>
+            </div>
         </div>
     </div>
 </div>

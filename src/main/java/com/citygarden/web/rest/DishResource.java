@@ -1,5 +1,7 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.service.DishService;
+import com.citygarden.web.rest.dto.DishDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.Dish;
 import com.citygarden.repository.DishRepository;
@@ -29,6 +31,9 @@ public class DishResource {
 
     @Inject
     private DishRepository dishRepository;
+
+    @Inject
+    private DishService dishService;
 
     /**
      * POST  /dishs -> Create a new dish.
@@ -73,9 +78,10 @@ public class DishResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Dish> getAllDishs() {
+    public List<DishDTO> getAllDishs() throws  Exception{
         log.debug("REST request to get all Dishs");
-        return dishRepository.findAll();
+        List<DishDTO> dishDTOs = dishService.findAll();
+        return dishDTOs;
      }
 
     /**

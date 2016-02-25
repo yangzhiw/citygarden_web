@@ -6,6 +6,8 @@ import com.citygarden.security.SecurityUtils;
 import com.citygarden.web.rest.dto.DeliveryAddressDTO;
 import com.citygarden.web.rest.util.CloudxEnums;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -16,6 +18,8 @@ import javax.inject.Inject;
 
 @Service
 public class DeliveryAddressService {
+
+    private final Logger log = LoggerFactory.getLogger(DeliveryAddressService.class);
 
     @Inject
     private DeliveryAddressRepository deliveryAddressRepository;

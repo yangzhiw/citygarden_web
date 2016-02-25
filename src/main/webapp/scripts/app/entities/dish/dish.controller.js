@@ -1,19 +1,14 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('DishController', function ($scope, $state, Dish,DishPhoto) {
+    .controller('DishController', function ($scope, $state, Dish) {
 
         $scope.dishs = [];
         $scope.loadAll = function() {
-            //Dish.query(function(result) {
-            //   $scope.dishs = result;
-            //    console.log(result);
-            //});
-
-            DishPhoto.query(function(result) {
-                $scope.dishPhoto = result.photo;
+            Dish.query(function(result) {
+               $scope.dishs = result;
                 console.log(result);
-            })
+            });
         };
         $scope.loadAll();
 
