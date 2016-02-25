@@ -5,9 +5,9 @@
     <div class="col-md-12 inner">
         <br/>
         <br/>
-        <div ng-repeat="dish in dishs track by dish.id" ui-sref="cartDetails.detail({id:cartDetails.id})">
+        <div ng-repeat="dish in dishs track by dish.id" ui-sref="dish.detail({id:dish.id})">
             <div>
-                <img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"  class="captcha_image col-md-3"/>
+                <img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"  class="col-md-3"/>
             </div>
             <div>
                 <span>{{dish.chineseName}}</span>

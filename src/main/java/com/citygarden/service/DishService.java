@@ -39,7 +39,7 @@ public class DishService {
             dishDTO.setIsDiscount(dish.getIsDiscount());
             dishDTO.setIsGain(dish.getIsGain());
             dishDTO.setIsHot(dish.getIsHot());
-            dishDTO.setOriginalPrice(dish.getIsHot());
+            dishDTO.setOriginalPrice(dish.getOriginalPrice());
             dishDTO.setChineseName(dish.getChineseName());
             dishDTO.setDishPhoto(dishPhotoUtilService.getDishPhoto(dish.getName()));
             System.err.println(dishDTO);
@@ -47,5 +47,24 @@ public class DishService {
             dishDTOs.add(dishDTO);
         }
         return dishDTOs;
+    }
+
+    public DishDTO findOne(String id)  throws Exception{
+        Dish dish =  dishRepository.findOne(id);
+        DishDTO dishDTO = new DishDTO();
+
+        dishDTO.setId(dish.getId());
+        dishDTO.setName(dish.getName());
+        dishDTO.setDiscountPrice(dish.getDiscountPrice());
+        dishDTO.setIsDiscount(dish.getIsDiscount());
+        dishDTO.setIsGain(dish.getIsGain());
+        dishDTO.setIsHot(dish.getIsHot());
+        dishDTO.setOriginalPrice(dish.getOriginalPrice());
+        dishDTO.setChineseName(dish.getChineseName());
+
+        dishDTO.setDishPhoto(dishPhotoUtilService.getDishPhoto(dish.getName()));
+
+        return dishDTO;
+
     }
 }

@@ -91,14 +91,14 @@ public class DishResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Dish> getDish(@PathVariable String id) {
+    public ResponseEntity<DishDTO> getDish(@PathVariable String id)  throws Exception{
         log.debug("REST request to get Dish : {}", id);
-        Dish dish = dishRepository.findOne(id);
-        return Optional.ofNullable(dish)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        DishDTO dishDTO = dishService.findOne(id);
+        if(dishDTO != null){
+            return new ResponseEntity<DishDTO>(dishDTO,HttpStatus.OK);
+        }else{
+            return  new ResponseEntity<DishDTO>(dishDTO,HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
