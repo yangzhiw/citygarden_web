@@ -3,7 +3,7 @@
 angular.module('citygardenWebApp')
     .factory('Cart', function ($resource, DateUtils) {
         return $resource('api/carts/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': { method: 'GET', isArray: false},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -11,6 +11,7 @@ angular.module('citygardenWebApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'delete' :{method:'DELETE'}
         });
     });

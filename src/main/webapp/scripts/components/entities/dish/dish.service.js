@@ -14,3 +14,10 @@ angular.module('citygardenWebApp')
             'update': { method:'PUT' }
         });
     })
+
+    .factory('DishPhoto', function ($resource, DateUtils) {
+        return $resource('api/dishphoto/:id', {}, {
+            'query': { method: 'GET', isArray: false}
+        })
+
+    })

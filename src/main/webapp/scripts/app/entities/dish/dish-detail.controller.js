@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('DishDetailController', function ($scope, $rootScope,$state, $stateParams, entity, Dish) {
+    .controller('DishDetailController', function ($scope, $rootScope,$state, $stateParams,CartDetails,entity, Dish) {
         $scope.dish = entity;
+        console.log(entity)
         $scope.cartDetails = {
             count : Number,
             dish   : entity,
@@ -62,7 +63,10 @@ angular.module('citygardenWebApp')
         }
 
         $scope.addCart = function(cartDetails){
-            console.log(cartDetails);
+            console.log(cartDetails.dish);
+            CartDetails.addCart(cartDetails,function(result){
+                $state.go('cart')
+            })
         }
 
     });

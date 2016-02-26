@@ -5,17 +5,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * A Cart.
  */
 
-@Document(collection = "cart")
+@Document(collection = "T_CART")
 public class Cart implements Serializable {
 
     @Id
     private String id;
+
+    private String username;
+    private double total;
+    private List<CartDetails> cartDetailsList = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -23,6 +29,30 @@ public class Cart implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public List<CartDetails> getCartDetailsList() {
+        return cartDetailsList;
+    }
+
+    public void setCartDetailsList(List<CartDetails> cartDetailsList) {
+        this.cartDetailsList = cartDetailsList;
     }
 
     @Override
@@ -48,7 +78,10 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "Cart{" +
-            "id=" + id +
+            "id='" + id + '\'' +
+            ", username='" + username + '\'' +
+            ", total=" + total +
+            ", cartDetailsList=" + cartDetailsList +
             '}';
     }
 }

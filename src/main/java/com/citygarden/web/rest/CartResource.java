@@ -1,5 +1,10 @@
 package com.citygarden.web.rest;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.citygarden.domain.CartDetails;
+import com.citygarden.security.SecurityUtils;
+import com.citygarden.service.CartService;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.Cart;
 import com.citygarden.repository.CartRepository;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,10 +32,13 @@ import java.util.Optional;
 public class CartResource {
 
     private final Logger log = LoggerFactory.getLogger(CartResource.class);
-        
+
     @Inject
     private CartRepository cartRepository;
-    
+
+    @Inject
+    private CartService cartService;
+
     /**
      * POST  /carts -> Create a new cart.
      */
@@ -39,15 +48,8 @@ public class CartResource {
     @Timed
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart) throws URISyntaxException {
         log.debug("REST request to save Cart : {}", cart);
-        if (cart.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("cart", "idexists", "A new cart cannot already have an ID")).body(null);
-        }
-        Cart result = cartRepository.save(cart);
-        return ResponseEntity.created(new URI("/api/carts/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("cart", result.getId().toString()))
-            .body(result);
+        return null;
     }
-
     /**
      * PUT  /carts -> Updates an existing cart.
      */
@@ -57,13 +59,12 @@ public class CartResource {
     @Timed
     public ResponseEntity<Cart> updateCart(@RequestBody Cart cart) throws URISyntaxException {
         log.debug("REST request to update Cart : {}", cart);
-        if (cart.getId() == null) {
-            return createCart(cart);
+        Cart cart1 = cartService.updateCart(cart);
+        if(cart1 == null){
+            return  new ResponseEntity<Cart>(cart1,HttpStatus.NOT_FOUND);
+        }else{
+            return  new ResponseEntity<Cart>(cart1,HttpStatus.OK);
         }
-        Cart result = cartRepository.save(cart);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("cart", cart.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -73,10 +74,16 @@ public class CartResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Cart> getAllCarts() {
+    public ResponseEntity<Cart> getCarts(@CookieValue(value = "cartCookie",required  = false) String cartCookieStr) {
         log.debug("REST request to get all Carts");
-        return cartRepository.findAll();
-            }
+        String username = SecurityUtils.getCurrentUserLogin();
+        Cart cart = cartRepository.findByUsername(username);
+        if(cart == null){
+            return new ResponseEntity<Cart>(cart,HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<Cart>(cart,HttpStatus.OK);
+        }
+     }
 
     /**
      * GET  /carts/:id -> get the "id" cart.

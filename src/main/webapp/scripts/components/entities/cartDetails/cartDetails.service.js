@@ -11,6 +11,8 @@ angular.module('citygardenWebApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'addCart':{method:'POST'},
+            'delete' :{method:'DELETE'}
         });
     });
