@@ -23,6 +23,7 @@ angular.module('citygardenWebApp')
 
             Cart.update($scope.carts,function(result){
                 console.log(result);
+                $state.reload();
             })
         }
     });

@@ -13,11 +13,11 @@
                 <td class="danger col-md-1">操作</td>
             </tr>
             <tr ng-repeat="cartDetail in carts.cartDetailsList">
-                <td ui-sref="dish.detail({id:dish.id})" class="info col-md-1">{{$index + 1}}</td>
-                <td ui-sref="dish.detail({id:dish.id})" class="waring col-md-2">{{cartDetail.dish.chineseName}}</td>
-                <td ui-sref="dish.detail({id:dish.id})" class="danger col-md-2">{{cartDetail.count}}</td>
-                <td ui-sref="dish.detail({id:dish.id})" class="info col-md-2">{{cartDetail.dish.discountPrice}}</td>
-                <td ui-sref="dish.detail({id:dish.id})" class="info col-md-2">{{cartDetail.subtotal}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-1">{{$index + 1}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="waring col-md-2">{{cartDetail.dish.chineseName}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="danger col-md-2">{{cartDetail.count}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-2">{{cartDetail.dish.discountPrice}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-2">{{cartDetail.subtotal}}</td>
                 <td class="danger col-md-1">
                     <a id="del" ng-click="updateCartDetail(cartDetail)">删除</a>
                 </td>
