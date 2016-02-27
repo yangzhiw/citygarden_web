@@ -13,4 +13,16 @@ angular.module('citygardenWebApp')
             },
             'update': { method:'PUT' }
         });
+    })
+
+    .factory('orderData', function () {
+        var tmp = {};
+        return {
+            get: function () {
+                return tmp;
+            },
+            set: function (data) {
+                tmp = data;
+            }
+        }
     });

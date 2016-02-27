@@ -1,4 +1,4 @@
-<div>
+<div class="col-md-12">
     <div class="col-md-3" ng-repeat="cartDetail in carts.cartDetailsList">
         <img ng-src="data:image/jpg;base64,{{cartDetail.dish.dishPhoto}}"  class="col-md-3"/>
     </div>
@@ -13,7 +13,12 @@
                 <td class="danger col-md-1">操作</td>
             </tr>
             <tr ng-repeat="cartDetail in carts.cartDetailsList">
-                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-1">{{$index + 1}}</td>
+                <td class="info col-md-1">{{$index + 1}}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label>
+                        <input type="checkbox" name="cartDetailsList" ng-model="cartDetail.check"
+                               value="{{cartDetail.id}}"/>
+                    </label>
+                </td>
                 <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="waring col-md-2">{{cartDetail.dish.chineseName}}</td>
                 <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="danger col-md-2">{{cartDetail.count}}</td>
                 <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-2">{{cartDetail.dish.discountPrice}}</td>
@@ -29,6 +34,8 @@
 <div>
     <span>总计：￥{{carts.total}}</span>
 </div>
+<hr/>
 <div>
-    提交订单
+    <button class="btn btn-success col-md-2 col-md-offset-2" ng-click="goAccount()">去结算</button>
 </div>
+<br/>
