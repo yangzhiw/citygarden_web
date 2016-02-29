@@ -1,0 +1,76 @@
+<div>
+    <div>
+        <h2 class="col-md-offset-5">提交订单</h2>
+    </div>
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> 返回购物车</span>
+    </button>
+    <div class="col-md-12 inner">
+        <br/>
+        <br/>
+        <table class="table table-bordered">
+            <tr>
+                <td class="info col-md-1">Num</td>
+                <td class="waring col-md-2">名称</td>
+                <td class="danger col-md-2">数量</td>
+                <td class="info col-md-2">售价</td>
+                <td class="info col-md-1">小计</td>
+            </tr>
+            <tr ng-repeat="orderItem in order.orderItemList">
+                <td class="info col-md-1">{{$index + 1}}</td>
+                <td ui-sref="dish.detail({id:orderItem.dish.id})" class="waring col-md-2">{{orderItem.dish.chineseName}}</td>
+                <td ui-sref="dish.detail({id:orderItem.dish.id})" class="danger col-md-2">{{orderItem.count}}</td>
+                <td ui-sref="dish.detail({id:orderItem.dish.id})" class="info col-md-2">{{orderItem.dish.discountPrice}}</td>
+                <td ui-sref="dish.detail({id:orderItem.dish.id})" class="info col-md-2">{{orderItem.subtotal}}</td>
+            </tr>
+            <tr>
+                <th>配送方式</th>
+                <td> {{deliveryWay[1]}}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label>
+                    <input type="radio" name="deliveryAddress" value="1" ng-model="order.deliveryWay"
+                           ng-checked="order.deliveryWay == 1"/>
+                    </label>
+                </td>&nbsp;&nbsp;&nbsp;&nbsp;
+                <td> {{deliveryWay[0]}}&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>
+                    <input type="radio" name="deliveryAddress" value="0" ng-model="order.deliveryWay"
+                           ng-checked="order.deliveryWay == 0"/>
+                </label>
+                </td>
+            </tr>
+        </table>
+        <div ng-show="order.deliveryWay == 1 ? true : false">
+
+            <h5>确认收货地址</h5>
+            <table class="table table-bordered">
+                <tr ng-repeat="deliveryAddress in  deliveryAddresses">
+                    <th>{{$index}}</th>
+                    <td colspan="3"> {{deliveryAddress.address}}</td>
+                    <td colspan="2">
+                        <label>
+                            <input type="radio" name="deliveryAddress" 
+                             ng-checked="deliveryAddress.isDefault == 0"/>
+                        </label>
+                        <span ng-show="deliveryAddress.isDefault == 0? true:false">&nbsp;&nbsp;&nbsp;&nbsp;默认</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>派送费</th>
+                    <td ng-model="order.cost">￥{{cost}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-offset-6">
+            <h3><span>总计:￥{{order.totalPrice}}</span></h3>
+    </div>
+</div>
+<hr/>
+<div>
+    <button type="submit" class="btn btn-info">
+        <span ng-click="submit()">提交</span>
+    </button>
+</div>
+

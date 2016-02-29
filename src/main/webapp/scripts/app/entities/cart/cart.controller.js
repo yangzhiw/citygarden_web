@@ -1,20 +1,18 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('CartController', function ($scope, $state, Cart,orderData) {
+    .controller('CartController', function ($scope, $state, Cart,orderData,Order) {
 
         $scope.carts = {};
         $scope.order = {
-            date:new Date(),
             totalPrice:Number,
             deliveryWay:"",
             orderStatus:"",
-            orderItems : []
+            orderItemList : []
         }
         $scope.loadAll = function() {
             Cart.query(function(result) {
                $scope.carts = result;
-                console.log(result);
             });
         };
         $scope.loadAll();
@@ -35,24 +33,27 @@ angular.module('citygardenWebApp')
         }
 
         $scope.goAccount = function(){
-            console.log($scope.carts);
-            $scope.order.orderItems = [];
+            $scope.order.orderItemList = [];
             var totalPrice = 0;
             for(var i=0; i<$scope.carts.cartDetailsList.length; i++) {
                 if($scope.carts.cartDetailsList[i].check) {
                     delete $scope.carts.cartDetailsList[i].check;
-                    $scope.order.orderItems.push($scope.carts.cartDetailsList[i]);
+                    $scope.order.orderItemList.push($scope.carts.cartDetailsList[i]);
 
                     totalPrice = totalPrice + $scope.carts.cartDetailsList[i].subtotal;
                 }
             }
 
             $scope.order.totalPrice = totalPrice;
-            $scope.order.deliveryWay = "派送";
+            $scope.order.deliveryWay = "1";
             $scope.order.orderStatus = "1";
-            console.log($scope.order);
 
-            orderData.set($scope.order);
+            console.log($scope.order);
+            if($scope.order.orderItemList.length != 0){
+                Order.save($scope.order,function(result){
+                })
+                $state.go('accounts');
+            }
 
         }
     });

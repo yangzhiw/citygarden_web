@@ -1,5 +1,7 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.config.SecurityConfiguration;
+import com.citygarden.security.SecurityUtils;
 import com.citygarden.service.DeliveryAddressService;
 import com.citygarden.web.rest.dto.DeliveryAddressDTO;
 import com.codahale.metrics.annotation.Timed;
@@ -78,7 +80,8 @@ public class DeliveryAddressResource {
     @Timed
     public List<DeliveryAddress> getAllDeliveryAddresss() {
         log.debug("REST request to get all DeliveryAddresss");
-        return deliveryAddressRepository.findAll();
+        String username = SecurityUtils.getCurrentUserLogin();
+        return deliveryAddressRepository.findByUsername(username);
             }
 
     /**

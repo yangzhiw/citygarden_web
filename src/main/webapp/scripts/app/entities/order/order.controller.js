@@ -25,4 +25,4 @@ angular.module('citygardenWebApp')
                 id: null
             };
         };
-    });
+    })
