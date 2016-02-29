@@ -24,4 +24,8 @@ angular.module('citygardenWebApp')
         };
         $scope.loadAll();
 
+        $scope.submit = function (order) {
+            console.log(order);
+        }
+
     })

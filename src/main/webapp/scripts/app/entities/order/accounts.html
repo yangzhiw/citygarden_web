@@ -50,8 +50,9 @@
                     <td colspan="3"> {{deliveryAddress.address}}</td>
                     <td colspan="2">
                         <label>
-                            <input type="radio" name="deliveryAddress"
-                             ng-checked="deliveryAddress.isDefault == 0"/>
+                            <input type="radio" name="deliveryAddress" ng-model="order.deliveryAddress"
+                                   ng-value="deliveryAddress.isDefault"
+                             ng-checked="(deliveryAddress.isDefault ==0)"/>
                         </label>
                         <span ng-show="deliveryAddress.isDefault == 0? true:false">&nbsp;&nbsp;&nbsp;&nbsp;默认</span>
                     </td>
@@ -69,8 +70,8 @@
 </div>
 <hr/>
 <div>
-    <button type="submit" class="btn btn-info">
-        <span ng-click="submit()">提交</span>
+    <button type="submit" class="btn btn-info" ng-click="submit(order)">
+        提交
     </button>
 </div>
 
