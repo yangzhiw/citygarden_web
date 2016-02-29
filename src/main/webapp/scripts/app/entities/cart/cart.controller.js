@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('CartController', function ($scope, $state, Cart,orderData,Order) {
+    .controller('CartController', function ($scope, $state, Cart,orderData,CartToAccount) {
 
         $scope.carts = {};
         $scope.order = {
@@ -50,7 +50,7 @@ angular.module('citygardenWebApp')
 
             console.log($scope.order);
             if($scope.order.orderItemList.length != 0){
-                Order.save($scope.order,function(result){
+                CartToAccount.save($scope.order,function(result){
                 })
                 $state.go('accounts');
             }

@@ -17,6 +17,22 @@ angular.module('citygardenWebApp')
         });
     })
 
+    .factory('CartToAccount', function ($resource, DateUtils) {
+        return $resource('api/cart2accounts/:id', {}, {
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            },
+            'update': { method:'PUT' },
+            'save': {method:'POST'}
+
+        });
+    })
+
     .factory('orderData', function () {
         var tmp = {};
         return {
