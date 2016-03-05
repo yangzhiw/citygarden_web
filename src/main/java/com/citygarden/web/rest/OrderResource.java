@@ -1,5 +1,7 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.service.OrderService;
+import com.citygarden.web.rest.dto.OrderDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.Order;
 import com.citygarden.repository.OrderRepository;
@@ -28,6 +30,9 @@ public class OrderResource {
     @Inject
     private OrderRepository orderRepository;
 
+    @Inject
+    private OrderService orderService;
+
     /**
      * POST  /orders -> Create a new order.
      */
@@ -35,14 +40,12 @@ public class OrderResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO order) throws URISyntaxException {
 
         log.debug("REST request to save Order : {}", order);
         System.out.println(order);
-        if (order.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("order", "idexists", "A new order cannot already have an ID")).body(null);
-        }
-        Order result = orderRepository.save(order);
+
+        Order result = orderService.save(order);
 
         return  new ResponseEntity<Order>(result,HttpStatus.OK);
     }

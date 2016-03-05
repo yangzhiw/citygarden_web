@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('AccountsController', function ($scope, $state, CartToAccount,DeliveryAddress) {
+    .controller('AccountsController', function ($scope, $state, CartToAccount,DeliveryAddress,Order) {
 
         $scope.order = [];
         $scope.deliveryAddresses = [];
@@ -26,6 +26,9 @@ angular.module('citygardenWebApp')
 
         $scope.submit = function (order) {
             console.log(order);
+            Order.save(order,function(result){
+
+            })
         }
 
     })
