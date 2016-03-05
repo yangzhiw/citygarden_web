@@ -2,6 +2,7 @@ package com.citygarden.web.rest;
 
 import com.citygarden.service.OrderService;
 import com.citygarden.web.rest.dto.OrderDTO;
+import com.citygarden.web.rest.dto.PayOrderDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.Order;
 import com.citygarden.repository.OrderRepository;
@@ -109,5 +110,15 @@ public class OrderResource {
         log.debug("REST request to delete Order : {}", id);
         orderRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("order", id.toString())).build();
+    }
+
+    @RequestMapping(value = "/orders/payment",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> payment(@RequestBody PayOrderDTO payOrder){
+        orderService.payment(payOrder);
+        return null;
+
     }
 }
