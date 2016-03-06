@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2016/3/4 0004.
@@ -26,6 +29,9 @@ public class OrderService {
     @Inject
     private Environment env;
 
+    @Inject
+    private HttpServletResponse resp;
+
 
 
     public Order save(OrderDTO order) {
@@ -39,13 +45,13 @@ public class OrderService {
         return  orderRepository.save(order_new);
     }
 
-    public void payment(PayOrderDTO payOrder) {
+    public ModelAndView payment(PayOrderDTO payOrder) throws IOException {
 		/*
 		 * 1. 准备13个参数
 		 */
         String p0_Cmd = "Buy";//业务类型，固定值Buy
         String p1_MerId = env.getProperty("payment.p1_MerId");//商号编码，在易宝的唯一标识
-        String p2_Order ="oid";//订单编码
+        String p2_Order = payOrder.getId();//订单编码
         String p3_Amt = "0.01";//支付金额
         String p4_Cur = "CNY";//交易币种，固定值CNY
         String p5_Pid = "";//商品名称
@@ -54,7 +60,7 @@ public class OrderService {
         String p8_Url = env.getProperty("payment.p8_Url");;//在支付成功后，易宝会访问这个地址。
         String p9_SAF = "";//送货地址
         String pa_MP = "";//扩展信息
-        String pd_FrpId = "yh";//支付通道
+        String pd_FrpId = payOrder.getBankCode();//支付通道
         String pr_NeedResponse = "1";//应答机制，固定值1
 
 		/*
@@ -87,5 +93,12 @@ public class OrderService {
         sb.append("&").append("pr_NeedResponse=").append(pr_NeedResponse);
         sb.append("&").append("hmac=").append(hmac);
 
+       // resp.sendRedirect(sb.toString());
+        resp.reset();
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Access-Control-Allow-Headers ","origin, x-requested-with, x-http-method-override, content-type");
+        resp.addHeader("Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTIONS");
+        System.out.println(resp);
+        return new ModelAndView("redirect:" + sb.toString());
     }
 }

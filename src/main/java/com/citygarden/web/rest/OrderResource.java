@@ -13,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -116,9 +118,8 @@ public class OrderResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> payment(@RequestBody PayOrderDTO payOrder){
-        orderService.payment(payOrder);
-        return null;
-
+    public ModelAndView payment(@RequestBody PayOrderDTO payOrder) throws IOException {
+        ModelAndView modelAndView = orderService.payment(payOrder);
+        return modelAndView;
     }
 }
