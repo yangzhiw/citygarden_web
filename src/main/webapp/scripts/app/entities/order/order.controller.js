@@ -26,6 +26,8 @@ angular.module('citygardenWebApp')
            console.log( $scope.orderpay)
            Payment.pay($scope.orderpay,function(result){
                console.log(result);
+            //   window.location.href = result.payUrl;
+               window.open(result.payUrl,'_blank');
            })
        }
 

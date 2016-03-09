@@ -1,0 +1,21 @@
+{
+    "citygardenWebApp": {
+        "cartDetails" : {
+            "home": {
+                "title": "CartDetailss",
+                "createLabel": "Create a new CartDetails",
+                "createOrEditLabel": "Create or edit a CartDetails",
+                "search": "Search for CartDetails"
+            },
+            "created": "A new CartDetails is created with identifier {{ param }}",
+            "updated": "A CartDetails is updated with identifier {{ param }}",
+            "deleted": "A CartDetails is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CartDetails {{ id }}?"
+            },
+            "detail": {
+                "title": "CartDetails"
+            }
+        }
+    }
+}

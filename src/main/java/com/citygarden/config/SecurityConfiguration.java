@@ -1,6 +1,7 @@
 package com.citygarden.config;
 
 import com.citygarden.security.*;
+import com.citygarden.web.filter.CORSFilter;
 import com.citygarden.web.filter.CsrfCookieGeneratorFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 
 import javax.inject.Inject;
@@ -52,6 +55,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+//    public CORSFilter corsFilter() throws Exception{
+//        CORSFilter samlFilter = new CORSFilter();
+//        return samlFilter;
+//    }
+
     @Inject
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -76,6 +84,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf()
         .and()
             .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
+            .addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class)
             .exceptionHandling()
             .accessDeniedHandler(new CustomAccessDeniedHandler())
             .authenticationEntryPoint(authenticationEntryPoint)
@@ -130,6 +139,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/protected/**").authenticated() ;
+
+//         http.addFilterBefore(corsFilter(), CORSFilter.class);
 
     }
 

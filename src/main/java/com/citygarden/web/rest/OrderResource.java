@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -118,8 +121,10 @@ public class OrderResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ModelAndView payment(@RequestBody PayOrderDTO payOrder) throws IOException {
-        ModelAndView modelAndView = orderService.payment(payOrder);
-        return modelAndView;
+    public Map payment(@RequestBody PayOrderDTO payOrder,HttpServletResponse res) throws IOException {
+        String payUrl = orderService.payment(payOrder);
+        Map<String, String> url = new HashMap<>();
+        url.put("payUrl", payUrl);
+        return url;
     }
 }

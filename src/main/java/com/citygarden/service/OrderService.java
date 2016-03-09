@@ -45,7 +45,7 @@ public class OrderService {
         return  orderRepository.save(order_new);
     }
 
-    public ModelAndView payment(PayOrderDTO payOrder) throws IOException {
+    public String payment(PayOrderDTO payOrder) throws IOException {
 		/*
 		 * 1. 准备13个参数
 		 */
@@ -93,12 +93,6 @@ public class OrderService {
         sb.append("&").append("pr_NeedResponse=").append(pr_NeedResponse);
         sb.append("&").append("hmac=").append(hmac);
 
-       // resp.sendRedirect(sb.toString());
-        resp.reset();
-        resp.addHeader("Access-Control-Allow-Origin", "*");
-        resp.addHeader("Access-Control-Allow-Headers ","origin, x-requested-with, x-http-method-override, content-type");
-        resp.addHeader("Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTIONS");
-        System.out.println(resp);
-        return new ModelAndView("redirect:" + sb.toString());
+        return sb.toString();
     }
 }
