@@ -1,8 +1,10 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.security.SecurityUtils;
 import com.citygarden.service.OrderService;
 import com.citygarden.web.rest.dto.OrderDTO;
 import com.citygarden.web.rest.dto.PayOrderDTO;
+import com.citygarden.web.rest.util.CloudxEnums;
 import com.codahale.metrics.annotation.Timed;
 import com.citygarden.domain.Order;
 import com.citygarden.repository.OrderRepository;
@@ -83,8 +85,9 @@ public class OrderResource {
     @Timed
     public List<Order> getAllOrders() {
         log.debug("REST request to get all Orders");
-        return orderRepository.findAll();
-            }
+        String username = SecurityUtils.getCurrentUserLogin();
+        return orderRepository.findByUsernameAndOrderStatus(username, CloudxEnums.OrderStatusEnum.UNPAY);
+    }
 
     /**
      * GET  /orders/:id -> get the "id" order.
@@ -126,5 +129,14 @@ public class OrderResource {
         Map<String, String> url = new HashMap<>();
         url.put("payUrl", payUrl);
         return url;
+    }
+
+    @RequestMapping(value = "/orders/backpay",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @Timed
+    public ResponseEntity<Void> backPay(){
+        return null;
     }
 }

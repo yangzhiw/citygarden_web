@@ -17,4 +17,21 @@ public class CloudxEnums {
         public DeliveryAddressEnum() {
         }
     }
+
+    public final class OrderStatusEnum {
+
+        //未付款
+        public static final String UNPAY = "1";
+        //付款未发货
+        public static final String PAYANDUNDELIVE = "2";
+        //发货未确认收货
+        public static final String DELIVEANDUNACCEPT = "3";
+        //确认收货
+        public static final String ACCEPT = "4";
+
+        public OrderStatusEnum() {
+
+        }
+
+    }
 }
