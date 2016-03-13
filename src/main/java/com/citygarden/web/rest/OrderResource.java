@@ -99,7 +99,7 @@ public class OrderResource {
     public ResponseEntity<Order> getOrder(@PathVariable String id) {
         log.debug("REST request to get Order : {}", id);
         System.err.println(id);
-        Order order = orderRepository.findByOrderStatus(id);
+        Order order = orderRepository.findOne(id);
         return Optional.ofNullable(order)
             .map(result -> new ResponseEntity<>(
                 result,

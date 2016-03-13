@@ -1,7 +1,9 @@
 package com.citygarden.service;
 
+import com.citygarden.config.SecurityConfiguration;
 import com.citygarden.domain.Order;
 import com.citygarden.repository.OrderRepository;
+import com.citygarden.security.SecurityUtils;
 import com.citygarden.service.util.PaymentUtil;
 import com.citygarden.web.rest.dto.OrderDTO;
 import com.citygarden.web.rest.dto.PayOrderDTO;
@@ -38,12 +40,14 @@ public class OrderService {
 
     public Order save(OrderDTO order) {
         Order order_new = new Order();
+        String username = SecurityUtils.getCurrentUserLogin();
         order_new.setTotalPrice(order.getTotalPrice());
         order_new.setDate(order.getDate());
         order_new.setDeliveryAddress(order.getDeliveryAddress());
         order_new.setOrderItemList(order.getOrderItemList());
         order_new.setOrderStatus(order.getOrderStatus());
         order_new.setDeliveryWay(order.getDeliveryWay());
+        order_new.setUsername(username);
         return  orderRepository.save(order_new);
     }
 

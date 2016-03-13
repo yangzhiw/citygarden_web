@@ -45,6 +45,27 @@ angular.module('citygardenWebApp')
                     }]
                 }
             })
+            .state('orderpay', {
+                parent: 'entity',
+                url: '/orderpay/{id}',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'citygardenWebApp.order.home.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/order/orderPay.html',
+                        controller: 'OrderPayController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('order');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
             .state('accounts', {
                 parent: 'entity',
                 url: '/accounts',

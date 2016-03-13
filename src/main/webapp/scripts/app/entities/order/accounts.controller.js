@@ -26,9 +26,9 @@ angular.module('citygardenWebApp')
 
         $scope.submit = function (order) {
             console.log(order);
-            Order.save(order,function(result){
-
-            })
+             Order.save(order,function(result){
+                $state.go('order');
+             })
         }
 
     })
