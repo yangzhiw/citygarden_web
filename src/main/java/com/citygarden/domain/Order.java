@@ -29,6 +29,8 @@ public class Order implements Serializable {
     private String orderStatus;
     private String deliveryAddress;
 
+    private String username;
+
     private List<OrderItem> orderItemList = new ArrayList<>();
 
     public String getId() {
@@ -87,6 +89,14 @@ public class Order implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,10 +112,13 @@ public class Order implements Serializable {
         return Objects.equals(id, order.id);
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 
     @Override
     public String toString() {
@@ -116,6 +129,7 @@ public class Order implements Serializable {
             ", date=" + date +
             ", orderStatus='" + orderStatus + '\'' +
             ", deliveryAddress='" + deliveryAddress + '\'' +
+            ", username='" + username + '\'' +
             ", orderItemList=" + orderItemList +
             '}';
     }

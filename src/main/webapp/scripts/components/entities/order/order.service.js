@@ -50,6 +50,19 @@ angular.module('citygardenWebApp')
         });
     })
 
+    .factory('PayBack', function ($resource, DateUtils) {
+        return $resource('api/orders/backpay', {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
+    })
+
+
     .factory('orderData', function () {
         var tmp = {};
         return {

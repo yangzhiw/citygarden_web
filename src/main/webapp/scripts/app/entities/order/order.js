@@ -24,6 +24,27 @@ angular.module('citygardenWebApp')
                     }]
                 }
             })
+            .state('orderback', {
+                parent: 'entity',
+                url: '/orderback',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'citygardenWebApp.order.home.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/order/orderback.html',
+                        controller: 'OrderBackController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('order');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
             .state('accounts', {
                 parent: 'entity',
                 url: '/accounts',

@@ -5,6 +5,7 @@ import com.citygarden.repository.OrderRepository;
 import com.citygarden.service.util.PaymentUtil;
 import com.citygarden.web.rest.dto.OrderDTO;
 import com.citygarden.web.rest.dto.PayOrderDTO;
+import com.citygarden.web.rest.util.CloudxEnums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -94,5 +96,61 @@ public class OrderService {
         sb.append("&").append("hmac=").append(hmac);
 
         return sb.toString();
+    }
+
+    public String backPay() throws Exception {
+		/*
+		 * 1. 获取12个参数
+		 */
+        HttpServletRequest req = null;
+		String p1_MerId = req.getParameter("p1_MerId");
+		String r0_Cmd = req.getParameter("r0_Cmd");
+		String r1_Code = req.getParameter("r1_Code");
+		String r2_TrxId = req.getParameter("r2_TrxId");
+		String r3_Amt = req.getParameter("r3_Amt");
+		String r4_Cur = req.getParameter("r4_Cur");
+		String r5_Pid = req.getParameter("r5_Pid");
+		String r6_Order = req.getParameter("r6_Order");
+		String r7_Uid = req.getParameter("r7_Uid");
+		String r8_MP = req.getParameter("r8_MP");
+		String r9_BType = req.getParameter("r9_BType");
+		String hmac = req.getParameter("hmac");
+		/*
+		 * 2. 获取keyValue
+		 */
+        String keyValue = env.getProperty("payment.keyValue");
+		/*
+		 * 3. 调用PaymentUtil的校验方法来校验调用者的身份
+		 *   >如果校验失败：保存错误信息，转发到msg.jsp
+		 *   >如果校验通过：
+		 *     * 判断访问的方法是重定向还是点对点，如果要是重定向
+		 *     修改订单状态，保存成功信息，转发到msg.jsp
+		 *     * 如果是点对点：修改订单状态，返回success
+		 */
+		boolean bool = PaymentUtil.verifyCallback(hmac, p1_MerId, r0_Cmd, r1_Code, r2_TrxId,
+				r3_Amt, r4_Cur, r5_Pid, r6_Order, r7_Uid, r8_MP, r9_BType,
+				keyValue);
+		if(!bool) {
+			//req.setAttribute("code", "error");
+			//req.setAttribute("msg", "无效的签名，支付失败！（你不是好人）");
+			return "error";
+		}
+		if(r1_Code.equals("1")) {
+			updateOrderStatus(r6_Order, CloudxEnums.OrderStatusEnum.PAYANDUNDELIVE);
+			if(r9_BType.equals("1")) {
+//				req.setAttribute("code", "success");
+//				req.setAttribute("msg", "恭喜，支付成功！");
+	         	return "success";
+			} else if(r9_BType.equals("2")) {
+				resp.getWriter().print("success");
+			}
+		}
+        return null;
+    }
+
+    private void updateOrderStatus(String orderId, String i) {
+        Order order = orderRepository.findOne(orderId);
+        order.setOrderStatus(i);
+        orderRepository.save(order);
     }
 }
