@@ -20,7 +20,7 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://192.168.1.105:27017
             database: citygarden_web
     mail:
         host: smtp.qq.com
