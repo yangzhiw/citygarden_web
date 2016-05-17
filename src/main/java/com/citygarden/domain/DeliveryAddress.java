@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 
 @Document(collection = "T_DELIVERY_ADDRESS")
-public class DeliveryAddress implements Serializable {
+public class DeliveryAddress extends AbstractAuditingEntity {
 
     @Id
     private String id;
@@ -22,7 +22,6 @@ public class DeliveryAddress implements Serializable {
     private String isDefault;
 
     private String  username;
-
 
     public String getId() {
         return id;
