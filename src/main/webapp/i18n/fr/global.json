@@ -17,6 +17,7 @@
                 "vegetableProvide": "VegetableProvide",
                 "cart": "Cart",
                 "cartDetails": "CartDetails",
+                "provideMerchant": "ProvideMerchant",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

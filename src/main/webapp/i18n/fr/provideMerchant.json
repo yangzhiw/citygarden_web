@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "provideMerchant" : {
+            "home": {
+                "title": "ProvideMerchants",
+                "createLabel": "Créer un nouveau ProvideMerchant",
+                "createOrEditLabel": "Créer ou éditer un ProvideMerchant",
+                "search": "Search for ProvideMerchant"
+            },
+            "created": "Un nouveau ProvideMerchant a été créé avec l'identifiant {{ param }}",
+            "updated": "Le ProvideMerchant avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le ProvideMerchant avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le ProvideMerchant {{ id }} ?"
+            },
+            "detail": {
+                "title": "ProvideMerchant"
+            }
+        }
+    }
+}
+

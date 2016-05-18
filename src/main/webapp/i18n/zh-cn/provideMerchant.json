@@ -1,0 +1,18 @@
+{
+    "citygardenWebApp": {
+        "provideMerchant" : {
+            "home": {
+                "title": "ProvideMerchants",
+                "createLabel": "Create a new ProvideMerchant",
+                "createOrEditLabel": "Create or edit a ProvideMerchant",
+                "search": "Search for ProvideMerchant"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete ProvideMerchant {{ id }}?"
+            },
+            "detail": {
+                "title": "ProvideMerchant"
+            }
+        }
+    }
+}
