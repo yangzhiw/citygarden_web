@@ -60,18 +60,18 @@ angular.module('citygardenWebApp')
             $scope.app_secret = "39a7a518-9ac8-4a9e-87bc-7885f33cf18c";
             $scope.title = "test1";
             $scope.amount = "1";
-            $scope.out_trade_no = "test14579420361";
+            //$scope.out_trade_no = $scope.order.id;
+            $scope.out_trade_no ="test3333337";
 
             $scope.sign = md5.createHash($scope.app_id + $scope.title + $scope.amount + $scope.out_trade_no + $scope.app_secret );
 
-            console.log($scope.sign);
             BC.click({
                 "title":$scope.title, //商品名
                 "amount":$scope.amount,  //总价（分）
                 "out_trade_no":$scope.out_trade_no, //自定义订单号
                 "trace_id":"testcustomer", //自定义购买者id
                 "sign":$scope.sign, //商品信息hash值，含义和生成方式见下文
-                "return_url" : "http://payservice.beecloud.cn/spay/result.php", //支付成功后跳转的商户页面,可选，默认为http://payservice.beecloud.cn/spay/result.php
+                "return_url" : "http://localhost:8082/order-success.html", //支付成功后跳转的商户页面,可选，默认为http://payservice.beecloud.cn/spay/result.php
                 "optional" : {"hello":"1"} //可选，自定义webhook
             });
 
@@ -80,7 +80,7 @@ angular.module('citygardenWebApp')
              */
             BC.err = function(err) {
                 //err 为object, 例 ｛”ERROR“ : "xxxx"｝;
-                console.log(err);
+                alert(err.ERROR);
             }
         }
 

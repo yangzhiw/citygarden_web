@@ -110,6 +110,29 @@ angular.module('citygardenWebApp')
                     }]
                 }
             })
+            .state('order.success', {
+                parent: 'entity',
+                url: '/order_success',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'citygardenWebApp.order.success.title'
+                },
+                views: {
+                    'orderSuccess@': {
+                        templateUrl: 'scripts/app/entities/order/order-success.html',
+                        controller: 'OrderDetailController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('order');
+                        return $translate.refresh();
+                    }],
+                    entity: ['$stateParams', 'Order', function($stateParams, Order) {
+                        return null;
+                    }]
+                }
+            })
             .state('order.new', {
                 parent: 'order',
                 url: '/new',
