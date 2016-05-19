@@ -89,6 +89,10 @@ angular.module('citygardenWebApp', ['LocalStorageModule', 'tmh.dynamicLocale', '
                 'navbar@': {
                     templateUrl: 'scripts/components/navbar/navbar.html',
                     controller: 'NavbarController'
+                },
+                'announcement@': {
+                    templateUrl: 'scripts/app/entities/announcement/announcements.html',
+                    controller: 'AnnouncementController'
                 }
             },
             resolve: {
