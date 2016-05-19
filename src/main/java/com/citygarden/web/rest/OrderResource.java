@@ -86,7 +86,21 @@ public class OrderResource {
     public List<Order> getAllOrders() {
         log.debug("REST request to get all Orders");
         String username = SecurityUtils.getCurrentUserLogin();
-        return orderRepository.findByUsernameAndOrderStatus(username, CloudxEnums.OrderStatusEnum.UNPAY);
+        return orderRepository.findByUsername(username);
+    }
+
+
+    /**
+     * GET  /orders -> get all the orders by order Status
+     */
+    @RequestMapping(value = "/orders/status/{status}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Order> getAllOrdersByStatus(@PathVariable String status) {
+        log.debug("REST request to get all Orders");
+        String username = SecurityUtils.getCurrentUserLogin();
+        return orderRepository.findByUsernameAndOrderStatus(username,status);
     }
 
     /**

@@ -60,8 +60,8 @@ angular.module('citygardenWebApp')
             $scope.app_secret = "39a7a518-9ac8-4a9e-87bc-7885f33cf18c";
             $scope.title = "test1";
             $scope.amount = "1";
-            //$scope.out_trade_no = $scope.order.id;
-            $scope.out_trade_no ="test3333337";
+            $scope.out_trade_no = $scope.order.id;
+           //  $scope.out_trade_no ="test3333337";
 
             $scope.sign = md5.createHash($scope.app_id + $scope.title + $scope.amount + $scope.out_trade_no + $scope.app_secret );
 
