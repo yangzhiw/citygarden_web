@@ -21,23 +21,21 @@ import java.util.stream.Collectors;
 public class ProvideMerchantService {
 
     private final Logger log = LoggerFactory.getLogger(ProvideMerchantService.class);
-    
+
     @Inject
     private ProvideMerchantRepository provideMerchantRepository;
-    
-    @Inject
-    private ProvideMerchantMapper provideMerchantMapper;
-    
+
+
     /**
      * Save a provideMerchant.
      * @return the persisted entity
      */
     public ProvideMerchantDTO save(ProvideMerchantDTO provideMerchantDTO) {
         log.debug("Request to save ProvideMerchant : {}", provideMerchantDTO);
-        ProvideMerchant provideMerchant = provideMerchantMapper.provideMerchantDTOToProvideMerchant(provideMerchantDTO);
-        provideMerchant = provideMerchantRepository.save(provideMerchant);
-        ProvideMerchantDTO result = provideMerchantMapper.provideMerchantToProvideMerchantDTO(provideMerchant);
-        return result;
+       // ProvideMerchant provideMerchant = provideMerchantMapper.provideMerchantDTOToProvideMerchant(provideMerchantDTO);
+     //   provideMerchant = provideMerchantRepository.save(provideMerchant);
+      //  ProvideMerchantDTO result = provideMerchantMapper.provideMerchantToProvideMerchantDTO(provideMerchant);
+        return null;
     }
 
     /**
@@ -46,10 +44,10 @@ public class ProvideMerchantService {
      */
     public List<ProvideMerchantDTO> findAll() {
         log.debug("Request to get all ProvideMerchants");
-        List<ProvideMerchantDTO> result = provideMerchantRepository.findAll().stream()
-            .map(provideMerchantMapper::provideMerchantToProvideMerchantDTO)
-            .collect(Collectors.toCollection(LinkedList::new));
-        return result;
+//        List<ProvideMerchantDTO> result = provideMerchantRepository.findAll().stream()
+//            .map(provideMerchantMapper::provideMerchantToProvideMerchantDTO)
+//            .collect(Collectors.toCollection(LinkedList::new));
+        return null;
     }
 
     /**
@@ -59,8 +57,8 @@ public class ProvideMerchantService {
     public ProvideMerchantDTO findOne(String id) {
         log.debug("Request to get ProvideMerchant : {}", id);
         ProvideMerchant provideMerchant = provideMerchantRepository.findOne(id);
-        ProvideMerchantDTO provideMerchantDTO = provideMerchantMapper.provideMerchantToProvideMerchantDTO(provideMerchant);
-        return provideMerchantDTO;
+    //    ProvideMerchantDTO provideMerchantDTO = provideMerchantMapper.provideMerchantToProvideMerchantDTO(provideMerchant);
+        return null;
     }
 
     /**

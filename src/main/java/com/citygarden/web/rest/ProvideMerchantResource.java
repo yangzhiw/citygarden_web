@@ -35,8 +35,6 @@ public class ProvideMerchantResource {
     @Inject
     private ProvideMerchantService provideMerchantService;
     
-    @Inject
-    private ProvideMerchantMapper provideMerchantMapper;
     
     /**
      * POST  /provideMerchants -> Create a new provideMerchant.
