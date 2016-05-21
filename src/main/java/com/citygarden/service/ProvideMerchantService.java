@@ -68,6 +68,7 @@ public class ProvideMerchantService {
                 z.setChineseName(y.getChineseName());
                 z.setOriginalPrice(y.getOriginalPrice());
                 z.setDiscountPrice(y.getDiscountPrice());
+                z.setDescription(y.getDescription());
                 try {
                     z.setDishPhoto(dishPhotoUtilService.getDishPhoto(y.getName()));
                 } catch (Exception e) {

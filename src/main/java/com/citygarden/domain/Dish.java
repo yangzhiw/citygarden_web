@@ -40,6 +40,16 @@ public class Dish implements Serializable {
     @Field("chinese_name")
     private String chineseName;
 
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }
@@ -135,6 +145,7 @@ public class Dish implements Serializable {
             ", isGain='" + isGain + '\'' +
             ", isHot='" + isHot + '\'' +
             ", chineseName='" + chineseName + '\'' +
+            ", description='" + description + '\'' +
             '}';
     }
 }

@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-sm-6 col-md-3"  ng-repeat="dish in provideMerchant.dishs" ng-show="$index ==0 || $index ==1 || $index ==2|| $index ==3">
                 <div class="thumbnail">
-                    <a href="#"><img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"/></a>
-                    <div class="caption">
-                        <h3>{{dish.chineseName}}</h3>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <a ui-sref="dish.detail({id:dish.id})"><img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"/></a>
+                    <div class="caption text-center">
+                        <h3 class="text-center" ui-sref="dish.detail({id:dish.id})" style="color: royalblue">{{dish.chineseName}}</h3>
+                        <p class="text-center" ui-sref="dish.detail({id:dish.id})">{{dish.description}}</p>
+                        <img src="../../../../assets/images/cart.png" ng-click="addCart(dish)"/>
                     </div>
                 </div>
             </div>

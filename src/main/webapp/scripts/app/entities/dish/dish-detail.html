@@ -26,14 +26,14 @@
                     </tr>
                 </table>
                 <div>
-                    <button class="down" id="decrement" ng-click="decrement()">-</button>
+                    <button class="down" id="decrement" ng-click="decrement(dish)">-</button>
                     <input id="number" ng-model="cartDetails.count" ng-init="cartDetails.count='1'"
-                           type="text" ng-blur="changeCount(cartDetails.count)">
-                    <button class="up" id="increment" ng-click="increment()">+</button>
-                    <span class="col-lg-offset-1">小计: ￥{{cartDetails.subtotal}}</span>
+                           type="text" ng-blur="changeCount(dish.count)">
+                    <button class="up" id="increment" ng-click="increment(dish)">+</button>
+                    <span class="col-lg-offset-1">小计: ￥{{dish.subtotal}}</span>
                 </div>
                 <br/>
-                <img src="../../../../assets/images/cart.png" ng-click="addCart(cartDetails)"/>
+                <img src="../../../../assets/images/cart.png" ng-click="addCart(dish)"/>
             </div>
         </div>
     </div>

@@ -23,6 +23,8 @@ angular.module('citygardenWebApp', ['LocalStorageModule', 'tmh.dynamicLocale', '
 
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
+        $rootScope.loginFlag = false;
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
@@ -36,6 +38,9 @@ angular.module('citygardenWebApp', ['LocalStorageModule', 'tmh.dynamicLocale', '
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
+
+            $rootScope.loginFlag = !(toState.name == 'home');
+
 
         });
 
@@ -55,6 +60,7 @@ angular.module('citygardenWebApp', ['LocalStorageModule', 'tmh.dynamicLocale', '
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
+
             updateTitle(titleKey);
         });
 
