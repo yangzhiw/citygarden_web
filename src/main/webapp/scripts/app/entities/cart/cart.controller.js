@@ -17,6 +17,54 @@ angular.module('citygardenWebApp')
         };
         $scope.loadAll();
 
+        $scope.changeCount = function (cartDetail) {
+            var count = cartDetail.count;
+            var dishPrice = (Number)(cartDetail.dish.discountPrice);
+            var r = /^[0-9]*[1-9][0-9]*$/
+            if(r.test(count)){
+                count = (Number)(count);
+                cartDetail.subtotal = dishPrice * (count);
+            }else{
+                alert("输入正确的整数！")
+            }
+            Cart.update($scope.carts,function(result){
+                console.log(result);
+                $state.reload();
+            })
+
+        }
+
+        $scope.decrement = function(cartDetail){
+            var count = cartDetail.count;
+            count = (Number)(count);
+            var dishPrice = (Number)(cartDetail.dish.discountPrice);
+            console.log(dishPrice);
+            if(count>=2){
+                cartDetail.count = count -1;
+                cartDetail.subtotal = dishPrice * (count-1);
+            }
+            Cart.update($scope.carts,function(result){
+                console.log(result);
+                $state.reload();
+            })
+        }
+
+        $scope.increment = function(cartDetail){
+            var count = cartDetail.count;
+            count = (Number)(count);
+            var dishPrice = (Number)(cartDetail.dish.discountPrice);
+            console.log(cartDetail.dish.discountPrice);
+            if(count>=0){
+                cartDetail.count = count +1;
+                cartDetail.subtotal = dishPrice * (count+1);
+            }
+            Cart.update($scope.carts,function(result){
+                console.log(result);
+                $state.reload();
+            })
+        }
+
+
         $scope.updateCartDetail = function(cartDetail){
             console.log(cartDetail);
             var index = $scope.carts.cartDetailsList.indexOf(cartDetail);

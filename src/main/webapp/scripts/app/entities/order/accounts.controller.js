@@ -24,6 +24,13 @@ angular.module('citygardenWebApp')
         };
         $scope.loadAll();
 
+        $scope.delete = function(order){
+            console.log(order);
+            CartToAccount.delete({id:order.id},function(result){
+                $state.go("cart");
+            });
+        }
+
         $scope.submit = function (order) {
             console.log(order);
              Order.save(order,function(result){

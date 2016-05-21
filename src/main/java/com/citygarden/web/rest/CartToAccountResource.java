@@ -61,7 +61,20 @@ public class CartToAccountResource {
         log.debug("REST request to get Order : {}", id);
         System.err.println(id);
         String username = SecurityUtils.getCurrentUserLogin();
-        CartToAccount result = cartToAccountRepository.findByOrderStatusAndUsername(id,username);
+        CartToAccount result = cartToAccountRepository.findByOrderStatusAndUsername(id, username);
         return new ResponseEntity<CartToAccount>(result, HttpStatus.OK);
+    }
+
+    /**
+     * DELETE  /carts/:id -> delete the "id" cart.
+     */
+    @RequestMapping(value = "/cart2accounts/{id}",
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> deleteCart(@PathVariable String id) {
+        log.debug("REST request to delete Cart : {}", id);
+        cartToAccountRepository.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("cart", id.toString())).build();
     }
 }

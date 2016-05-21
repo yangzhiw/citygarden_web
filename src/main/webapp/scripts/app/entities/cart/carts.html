@@ -1,8 +1,5 @@
 <div class="col-md-12">
-    <div class="col-md-3" ng-repeat="cartDetail in carts.cartDetailsList">
-        <img ng-src="data:image/jpg;base64,{{cartDetail.dish.dishPhoto}}"  class="col-md-3"/>
-    </div>
-    <div class="col-md-9 col-md-offset-1">
+    <div class="col-md-12">
         <table class="table table-bordered">
             <tr>
                 <td class="info col-md-1">Num</td>
@@ -19,8 +16,16 @@
                                value="{{cartDetail.id}}"/>
                     </label>
                 </td>
-                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="waring col-md-2">{{cartDetail.dish.chineseName}}</td>
-                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="danger col-md-2">{{cartDetail.count}}</td>
+                <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="waring col-md-2">
+                    <img ng-src="data:image/jpg;base64,{{cartDetail.dish.dishPhoto}}" class="col-md-3"/>
+                    {{cartDetail.dish.chineseName}}
+                </td>
+                <td class="danger col-md-2">
+                    <button class="down" id="decrement" ng-click="decrement(cartDetail)">-</button>
+                    <input id="number" ng-model="cartDetail.count" style="width: 50px"
+                           type="text" ng-blur="changeCount(cartDetail)" ng-change="changeCount(cartDetail)">
+                    <button class="up" id="increment" ng-click="increment(cartDetail)">+</button>
+                </td>
                 <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-2">{{cartDetail.dish.discountPrice}}</td>
                 <td ui-sref="dish.detail({id:cartDetail.dish.id})" class="info col-md-2">{{cartDetail.subtotal}}</td>
                 <td class="danger col-md-1">
