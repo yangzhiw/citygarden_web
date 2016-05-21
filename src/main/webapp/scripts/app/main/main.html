@@ -1,12 +1,23 @@
-<div>
-    <div class="col-md-12" style="padding-top: 20px;">
-        <div ng-repeat="provideMerchant in provideMerchants track by provideMerchant.id"
-        >
-            <div style="float:left; margin-bottom:10px" class="col-md-3">
-                <img ng-src="data:image/jpg;base64,{{provideMerchant.providePhoto}}" style="width: 100%;height:200px;" />
-                <div style="text-align: center;">{{provideMerchant.chineseName}}</div>
+<div class="" ng-repeat="provideMerchant in provideMerchants"> <!--蔬菜-->
+        <div class="row">
+            <div class="col-md-12 titleA">
+                <div style="background-color: #70DB93; margin: 15px 0px;padding: 5px 15px 5px 15px;box-shadow:3px 3px 3px;">
+                    <a name="1" href="#"><span style="color: #FFFFFF; font-size: 16px;">{{provideMerchant.chineseName}}</span></a>
+                    <a href="#"><span style="color: #FFFFFF; font-size: 14px;float: right;margin-top:1px;">更多</span></a>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-3"  ng-repeat="dish in provideMerchant.dishs" ng-show="$index ==0 || $index ==1 || $index ==2|| $index ==3">
+                <div class="thumbnail">
+                    <a href="#"><img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"/></a>
+                    <div class="caption">
+                        <h3>{{dish.chineseName}}</h3>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 

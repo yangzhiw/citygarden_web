@@ -1,11 +1,15 @@
 package com.citygarden.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joda.time.DateTime;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,6 +36,14 @@ public class Order implements Serializable {
     private String username;
 
     private List<OrderItem> orderItemList = new ArrayList<>();
+
+    @CreatedDate
+    @Field("created_date")
+    private ZonedDateTime createdDate = ZonedDateTime.now();
+
+    @LastModifiedDate
+    @Field("last_modified_date")
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
     public String getId() {
         return id;

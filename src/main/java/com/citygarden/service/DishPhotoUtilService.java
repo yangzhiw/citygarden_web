@@ -32,7 +32,7 @@ public class DishPhotoUtilService {
         Mongo mongo = mongoDbFactory.getDb().getMongo();
         DB db = mongo.getDB(env.getProperty("spring.data.mongodb.database"));
         log.debug("REST request to get dishPhoto");;
-        GridFS gfsPhoto = new GridFS(db, "T_DIST_PHOTO");
+        GridFS gfsPhoto = new GridFS(db, "T_DISH_PHOTO");
         GridFSDBFile imageForOutput = gfsPhoto.findOne(name);
         System.out.println(imageForOutput);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
