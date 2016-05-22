@@ -1,6 +1,9 @@
 package com.citygarden.web.rest;
 
+import com.citygarden.domain.CartToAccount;
+import com.citygarden.repository.CartToAccountRepository;
 import com.citygarden.security.SecurityUtils;
+import com.citygarden.service.CartService;
 import com.citygarden.service.OrderService;
 import com.citygarden.service.RepertoryManagerService;
 import com.citygarden.web.rest.dto.OrderDTO;
@@ -44,6 +47,12 @@ public class OrderResource {
     @Inject
     private RepertoryManagerService repertoryManagerService;
 
+    @Inject
+    private CartToAccountRepository cartToAccountRepository;
+
+    @Inject
+    private CartService cartService;
+
     /**
      * POST  /orders -> Create a new order.
      */
@@ -56,6 +65,9 @@ public class OrderResource {
         log.debug("REST request to save Order : {}", order);
         System.out.println(order);
 
+        cartToAccountRepository.delete(order.getId());
+
+        cartService.updateCartFromOrder(order);
         Order result = orderService.save(order);
 
         return  new ResponseEntity<Order>(result,HttpStatus.OK);

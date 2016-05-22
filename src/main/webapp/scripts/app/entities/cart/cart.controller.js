@@ -13,6 +13,7 @@ angular.module('citygardenWebApp')
         $scope.loadAll = function() {
             Cart.query(function(result) {
                $scope.carts = result;
+                console.log(result);
             });
         };
         $scope.loadAll();
