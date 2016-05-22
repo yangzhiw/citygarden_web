@@ -12,7 +12,7 @@ angular.module('citygardenWebApp')
             $scope.AddressDTO.address = address.province + address.city +address.district + address.street;
             $scope.AddressDTO.isDefault = address.isDefault;
             DeliveryAddress.create($scope.AddressDTO,function(result){
-
+                $state.go("home");
             })
         };
 

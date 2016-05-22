@@ -20,12 +20,15 @@ public class OrderDTO {
     private double totalPrice;
     @Field("delivery_way")
     private String deliveryWay;
-    private DateTime date = new DateTime();
+    private String date;
     @Field("order_status")
     private String orderStatus;
     private String deliveryAddress;
 
     private List<OrderItem> orderItemList = new ArrayList<>();
+
+    private String lastModifiedDate;
+
 
     public String getId() {
         return id;
@@ -51,11 +54,11 @@ public class OrderDTO {
         this.deliveryWay = deliveryWay;
     }
 
-    public DateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -81,6 +84,14 @@ public class OrderDTO {
 
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
+    }
+
+    public String getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(String lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override

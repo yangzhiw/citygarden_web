@@ -29,19 +29,21 @@
                 <th>配送方式</th>
                 <td> {{deliveryWay[1]}}&nbsp;&nbsp;&nbsp;&nbsp;
                     <label>
-                    <input type="radio" name="deliveryAddress" value="1" ng-model="order.deliveryWay"
+                    <input type="radio" name="deliveryWay" value="1" ng-model="order.deliveryWay"
+                           ng-change="changDeliveryWay(order.deliveryWay)"
                            ng-checked="order.deliveryWay == 1"/>
                     </label>
                 </td>&nbsp;&nbsp;&nbsp;&nbsp;
                 <td> {{deliveryWay[0]}}&nbsp;&nbsp;&nbsp;&nbsp;
                 <label>
-                    <input type="radio" name="deliveryAddress" value="0" ng-model="order.deliveryWay"
+                    <input type="radio" name="deliveryWay" value="0" ng-model="order.deliveryWay"
+                           ng-change="changDeliveryWay(order.deliveryWay)"
                            ng-checked="order.deliveryWay == 0"/>
                 </label>
                 </td>
             </tr>
         </table>
-        <div ng-show="order.deliveryWay == 1 ? true : false">
+        <div ng-show="order.deliveryWay == 1">
 
             <h5>确认收货地址</h5>
             <table class="table table-bordered">
@@ -51,7 +53,8 @@
                     <td colspan="2">
                         <label>
                             <input type="radio" name="deliveryAddress" ng-model="order.deliveryAddress"
-                                   ng-value="deliveryAddress.isDefault"
+                                   value="{{deliveryAddress.address}}"
+                                   ng-change="addDelivery(deliveryAddress.address)"
                              ng-checked="(deliveryAddress.isDefault == 0)"/>
                         </label>
                         <span ng-show="deliveryAddress.isDefault == 0? true:false">&nbsp;&nbsp;&nbsp;&nbsp;默认</span>
@@ -65,7 +68,11 @@
         </div>
     </div>
     <div class="col-md-offset-6">
-            <h3><span>总计:￥{{order.totalPrice}}</span></h3>
+            <h3>
+                <span>
+                    总计:￥{{order.totalPrice}}
+                </span>
+            </h3>
     </div>
 </div>
 <hr/>

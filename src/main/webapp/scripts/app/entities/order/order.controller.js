@@ -35,6 +35,7 @@ angular.module('citygardenWebApp')
         $scope.load = function(){
             Order.get({id : $stateParams.id},function(result){
                 $scope.order = result;
+                console.log(result);
             });
         }
 
@@ -73,7 +74,15 @@ angular.module('citygardenWebApp')
                 "sign":$scope.sign, //商品信息hash值，含义和生成方式见下文
                 "return_url" : "http://localhost:8082/order-success.html", //支付成功后跳转的商户页面,可选，默认为http://payservice.beecloud.cn/spay/result.php
                 "optional" : {"hello":"1"} //可选，自定义webhook
+            },function(res){
+                console.log(res);
             });
+
+            Payment.update($scope.order,function(result){
+                console.log(result);
+            } ,function() {
+                $state.go('orderpay', {id:$scope.order.id}, { reload: true });
+            })
 
             /**
              * click调用错误返回：默认行为console.log(err)

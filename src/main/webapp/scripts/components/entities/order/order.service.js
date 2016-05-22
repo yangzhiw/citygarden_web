@@ -29,7 +29,7 @@ angular.module('citygardenWebApp')
             },
             'update': { method:'PUT' },
             'save': {method:'POST'},
-             'delete' : {method:'DELETE'}
+            'delete' : {method:'DELETE'}
         });
     })
 

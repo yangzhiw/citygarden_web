@@ -2,6 +2,7 @@ package com.citygarden.web.rest;
 
 import com.citygarden.security.SecurityUtils;
 import com.citygarden.service.OrderService;
+import com.citygarden.service.RepertoryManagerService;
 import com.citygarden.web.rest.dto.OrderDTO;
 import com.citygarden.web.rest.dto.PayOrderDTO;
 import com.citygarden.web.rest.util.CloudxEnums;
@@ -15,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +40,9 @@ public class OrderResource {
 
     @Inject
     private OrderService orderService;
+
+    @Inject
+    private RepertoryManagerService repertoryManagerService;
 
     /**
      * POST  /orders -> Create a new order.
@@ -100,7 +103,7 @@ public class OrderResource {
     public List<Order> getAllOrdersByStatus(@PathVariable String status) {
         log.debug("REST request to get all Orders");
         String username = SecurityUtils.getCurrentUserLogin();
-        return orderRepository.findByUsernameAndOrderStatus(username,status);
+        return orderRepository.findByUsernameAndOrderStatus(username, status);
     }
 
     /**
@@ -110,10 +113,10 @@ public class OrderResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Order> getOrder(@PathVariable String id) {
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable String id) {
         log.debug("REST request to get Order : {}", id);
-        System.err.println(id);
-        Order order = orderRepository.findOne(id);
+        OrderDTO order = orderService.findOne(id);
+        System.err.println(order);
         return Optional.ofNullable(order)
             .map(result -> new ResponseEntity<>(
                 result,
@@ -143,6 +146,22 @@ public class OrderResource {
         Map<String, String> url = new HashMap<>();
         url.put("payUrl", payUrl);
         return url;
+    }
+
+    @RequestMapping(value = "/orders/payment",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> payment(@RequestBody OrderDTO orderDTO) throws IOException {
+        Order order = orderRepository.findOne(orderDTO.getId());
+        if (order != null) {
+            if(order.getOrderStatus().equals(CloudxEnums.OrderStatusEnum.UNPAY)){
+                order.setOrderStatus(CloudxEnums.OrderStatusEnum.PAYANDUNDELIVE);
+                orderRepository.save(order);
+                repertoryManagerService.update(order);
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/orders/backpay",

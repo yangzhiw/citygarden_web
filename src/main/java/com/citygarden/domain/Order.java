@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +27,13 @@ public class Order implements Serializable {
     private double totalPrice;
     @Field("delivery_way")
     private String deliveryWay;
-    private DateTime date = new DateTime();
+
+
+    @CreatedDate
+    @Field("created_date")
+    private DateTime date = new DateTime().now();
+
+
     @Field("order_status")
     private String orderStatus;
     private String deliveryAddress;
@@ -37,13 +42,9 @@ public class Order implements Serializable {
 
     private List<OrderItem> orderItemList = new ArrayList<>();
 
-    @CreatedDate
-    @Field("created_date")
-    private ZonedDateTime createdDate = ZonedDateTime.now();
-
     @LastModifiedDate
     @Field("last_modified_date")
-    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
+    private DateTime lastModifiedDate = DateTime.now();
 
     public String getId() {
         return id;
@@ -109,6 +110,14 @@ public class Order implements Serializable {
         this.username = username;
     }
 
+    public DateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(DateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,6 +152,7 @@ public class Order implements Serializable {
             ", deliveryAddress='" + deliveryAddress + '\'' +
             ", username='" + username + '\'' +
             ", orderItemList=" + orderItemList +
+            ", lastModifiedDate=" + lastModifiedDate +
             '}';
     }
 }

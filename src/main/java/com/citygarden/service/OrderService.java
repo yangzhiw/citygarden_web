@@ -42,7 +42,6 @@ public class OrderService {
         Order order_new = new Order();
         String username = SecurityUtils.getCurrentUserLogin();
         order_new.setTotalPrice(order.getTotalPrice());
-        order_new.setDate(order.getDate());
         order_new.setDeliveryAddress(order.getDeliveryAddress());
         order_new.setOrderItemList(order.getOrderItemList());
         order_new.setOrderStatus(order.getOrderStatus());
@@ -156,5 +155,19 @@ public class OrderService {
         Order order = orderRepository.findOne(orderId);
         order.setOrderStatus(i);
         orderRepository.save(order);
+    }
+
+    public OrderDTO findOne(String id) {
+        Order order = orderRepository.findOne(id);
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setId(order.getId());
+        orderDTO.setDate(order.getDate().toString("yyyy:MM:dd HH:mm:dd"));
+        orderDTO.setLastModifiedDate(order.getLastModifiedDate().toString("yyyy:MM:dd HH:mm:dd"));
+        orderDTO.setTotalPrice(order.getTotalPrice());
+        orderDTO.setDeliveryAddress(order.getDeliveryAddress());
+        orderDTO.setDeliveryWay(order.getDeliveryWay());
+        orderDTO.setOrderStatus(order.getOrderStatus());
+        orderDTO.setOrderItemList(order.getOrderItemList());
+        return orderDTO;
     }
 }

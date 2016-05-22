@@ -1,41 +1,11 @@
-<!--<div class="">-->
-    <!--<span class="spanPrice">支付金额：</span><span class="">&yen;{{order.totalPrice }}</span>-->
-    <!--<span class="spanOid">编号：{{order.id }}</span>-->
-<!--</div>-->
+<div class="">
+    <span class="spanPrice">支付金额：</span><span class="">&yen;{{order.totalPrice }}</span>
+    <span class="spanOid">订单编号：{{order.id }}</span>
+    <br/>
+    <span class="spanOid">订单时间：{{order.date}}</span>
+</div>
 
-<a ng-click="bcpay()">去支付</a>
-<!--<ul id="beecloud-pay-list" style="display: block; bottom: -42px; left: 528px;">-->
-    <!--<li class="beecloud-pay-btn channel-ali">-->
-        <!--<i></i><span>支付宝支付</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-wxmp">-->
-        <!--<i></i><span>微信扫码</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-un">-->
-        <!--<i></i><span>银联支付</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-jd">-->
-        <!--<i></i><span>京东支付</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-bd">-->
-        <!--<i></i><span>百度支付</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-kuaiqian">-->
-        <!--<i></i><span>快钱支付</span>-->
-    <!--</li>-->
-    <!--<li class="beecloud-pay-btn channel-yee">-->
-        <!--<i></i><span>易宝支付</span>-->
-     <!--</li>-->
-    <!--<div class="beecloud-pay-close" ng-click="close()"></div>-->
-<!--</ul>-->
-
-
-
-
-
-
-
-
+<a style="margin-top: 20px" ng-click="bcpay()">去支付</a>
 <!--<div class="divBank">-->
     <!--<div class="divText">选择网上银行</div>-->
     <!--<div style="margin-left: 20px;">-->
