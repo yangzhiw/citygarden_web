@@ -12,4 +12,8 @@ import java.util.List;
 public interface CartToAccountRepository  extends MongoRepository<CartToAccount,String> {
 
     CartToAccount findByOrderStatusAndUsername(String s, String id);
+
+    CartToAccount findByIsCheck(String ischeck);
+
+    CartToAccount findByIsCheckAndUsername(String ischeck, String username);
 }

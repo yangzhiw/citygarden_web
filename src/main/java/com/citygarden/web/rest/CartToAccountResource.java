@@ -5,6 +5,7 @@ import com.citygarden.domain.CartToAccount;
 import com.citygarden.domain.Order;
 import com.citygarden.repository.CartToAccountRepository;
 import com.citygarden.security.SecurityUtils;
+import com.citygarden.web.rest.util.CloudxEnums;
 import com.citygarden.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -45,6 +46,12 @@ public class CartToAccountResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("order", "idexists", "A new order cannot already have an ID")).body(null);
         }
         toAccount.setUsername(SecurityUtils.getCurrentUserLogin());
+        toAccount.setIsCheck(CloudxEnums.CheckEnum.ISCHECK);
+        CartToAccount cartToAccount = cartToAccountRepository.findByIsCheck(CloudxEnums.CheckEnum.ISCHECK);
+        if(cartToAccount != null){
+            cartToAccount.setIsCheck(CloudxEnums.CheckEnum.UNCHECK);
+            cartToAccountRepository.save(cartToAccount);
+        }
         CartToAccount result = cartToAccountRepository.save(toAccount);
 
         return  new ResponseEntity<CartToAccount>(result, HttpStatus.OK);
@@ -61,7 +68,7 @@ public class CartToAccountResource {
         log.debug("REST request to get Order : {}", id);
         System.err.println(id);
         String username = SecurityUtils.getCurrentUserLogin();
-        CartToAccount result = cartToAccountRepository.findByOrderStatusAndUsername(id, username);
+        CartToAccount result = cartToAccountRepository.findByIsCheckAndUsername(CloudxEnums.CheckEnum.ISCHECK, username);
         return new ResponseEntity<CartToAccount>(result, HttpStatus.OK);
     }
 

@@ -1,6 +1,5 @@
 package com.citygarden.domain;
 
-import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,7 +13,7 @@ import java.util.Objects;
  */
 
 @Document(collection = "T_CART_TO_ACCOUNT")
-public class CartToAccount {
+public class CartToAccount extends AbstractAuditingEntity{
     @Id
     private String id;
 
@@ -26,6 +25,8 @@ public class CartToAccount {
     private String orderStatus;
 
     private String username;
+
+    private String isCheck;
 
     private List<OrderItem> orderItemList = new ArrayList<>();
 
@@ -77,6 +78,14 @@ public class CartToAccount {
         this.username = username;
     }
 
+    public String getIsCheck() {
+        return isCheck;
+    }
+
+    public void setIsCheck(String isCheck) {
+        this.isCheck = isCheck;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -105,6 +114,7 @@ public class CartToAccount {
             ", deliveryWay='" + deliveryWay + '\'' +
             ", orderStatus='" + orderStatus + '\'' +
             ", username='" + username + '\'' +
+            ", isCheck='" + isCheck + '\'' +
             ", orderItemList=" + orderItemList +
             '}';
     }

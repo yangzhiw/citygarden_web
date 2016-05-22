@@ -100,8 +100,8 @@ angular.module('citygardenWebApp')
             console.log($scope.order);
             if($scope.order.orderItemList.length != 0){
                 CartToAccount.save($scope.order,function(result){
+                    $state.go('accounts');
                 })
-                $state.go('accounts');
             }
 
         }

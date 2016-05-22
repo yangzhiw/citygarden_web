@@ -1,22 +1,16 @@
 package com.citygarden.service;
 
-import com.citygarden.domain.Dish;
-import com.citygarden.domain.ProvideDish;
 import com.citygarden.domain.ProvideMerchant;
 import com.citygarden.repository.ProvideMerchantRepository;
 import com.citygarden.web.rest.dto.DishDTO;
 import com.citygarden.web.rest.dto.ProvideMerchantDTO;
-import com.citygarden.web.rest.mapper.ProvideMerchantMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing ProvideMerchant.

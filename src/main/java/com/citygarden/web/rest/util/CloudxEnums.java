@@ -34,4 +34,9 @@ public class CloudxEnums {
         }
 
     }
+
+    public final  class CheckEnum{
+        public static final String ISCHECK = "0";
+        public static final String UNCHECK = "1";
+    }
 }
