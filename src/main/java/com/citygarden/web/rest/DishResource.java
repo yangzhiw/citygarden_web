@@ -102,6 +102,23 @@ public class DishResource {
     }
 
     /**
+     * GET  /dishs/searchCondition
+     */
+    @RequestMapping(value = "/dishs/seacher",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<DishDTO>> getDishBySearchName(@RequestParam(value = "name",required = true) String name)  throws Exception{
+        log.debug("REST request to get Dish : {}", name);
+        List<DishDTO> dishDTO = dishService.findByName(name);
+        if(dishDTO != null){
+            return new ResponseEntity<List<DishDTO>>(dishDTO,HttpStatus.OK);
+        }else{
+            return  new ResponseEntity<List<DishDTO>>(dishDTO,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
      * DELETE  /dishs/:id -> delete the "id" dish.
      */
     @RequestMapping(value = "/dishs/{id}",

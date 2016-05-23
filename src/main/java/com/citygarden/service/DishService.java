@@ -5,6 +5,9 @@ import com.citygarden.repository.DishRepository;
 import com.citygarden.web.rest.dto.DishDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -25,6 +28,9 @@ public class DishService {
 
     @Inject
     private DishPhotoUtilService dishPhotoUtilService;
+
+    @Inject
+    private MongoTemplate mongoTemplate;
 
     public List<DishDTO> findAll() throws  Exception{
         List<Dish> dishs = dishRepository.findAll();
@@ -66,5 +72,36 @@ public class DishService {
 
         return dishDTO;
 
+    }
+
+    public List<DishDTO> findByName(String name){
+        Dish dish = new Dish();
+        Query query = new Query();
+        Criteria criteria = new Criteria();
+        criteria.and(name).regex(dish.getChineseName());
+        query.addCriteria(criteria);
+        List<Dish> dishs = mongoTemplate.find(query, Dish.class);
+
+        List<DishDTO> dishDTOs = new ArrayList<>(0);
+        dishs.forEach(x->{
+            DishDTO y = new DishDTO();
+            y.setId(x.getId());
+            y.setDescription(x.getDescription());
+            y.setIsGain(x.getIsGain());
+            y.setChineseName(x.getChineseName());
+            y.setDiscountPrice(x.getDiscountPrice());
+            try {
+                y.setDishPhoto(dishPhotoUtilService.getDishPhoto(x.getName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            y.setIsHot(x.getIsHot());
+            y.setName(x.getName());
+            y.setOriginalPrice(x.getOriginalPrice());
+            y.setIsDiscount(x.getIsDiscount());
+
+            dishDTOs.add(y);
+        });
+        return dishDTOs;
     }
 }

@@ -17,6 +17,8 @@ public class DishDTO {
     private String chineseName;
     private String description;
 
+    private String provideName;
+
     public String getId() {
         return id;
     }
@@ -97,6 +99,14 @@ public class DishDTO {
         this.description = description;
     }
 
+    public String getProvideName() {
+        return provideName;
+    }
+
+    public void setProvideName(String provideName) {
+        this.provideName = provideName;
+    }
+
     @Override
     public String toString() {
         return "DishDTO{" +
@@ -110,6 +120,7 @@ public class DishDTO {
             ", dishPhoto='" + dishPhoto + '\'' +
             ", chineseName='" + chineseName + '\'' +
             ", description='" + description + '\'' +
+            ", provideName='" + provideName + '\'' +
             '}';
     }
 }
