@@ -1,13 +1,20 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/"><span translate="global.title">jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+<nav class="navbar-default" style="background-color: #c7ddef" role="navigation">
+    <div class="">
+        <div class="ct_logo col-md-1">
+            <a ui-sref="home"><img src="../../../../assets/images/logo.png"/></a>
+        </div>
+        <div class="h_search col-md-5 col-xs-5 col-md-offset-2 row hidden-xs">
+            <div class="clearfix" style=" margin-top: 11.5px;">
+                <div class="col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" value="" />
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <a href="#"><img id="search" src="../../../../assets/images/search_h.png"/></a>
+                </div>
+            </div>
+        </div>
+        <div class="ct_cart col-md-1">
+            <img ui-sref="cart" src="../../../../assets/images/cart1.png"/>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
@@ -17,38 +24,31 @@
                         <span class="hidden-sm">首页</span>
                     </a>
                 </li>
-                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="hidden-sm" translate="global.menu.entities.main">
-                                Entities
+                            <span class="hidden-sm">
+                                我的订单
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ><a ui-sref="deliveryAddress" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.deliveryAddress">Delivery address</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="order" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span translate="global.menu.entities.order">Order</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="dish" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span translate="global.menu.entities.dish">Dish</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="announcement" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.announcement">Announcement</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="repertoryManager" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.repertoryManager">Repertory manager</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="groupPurchase" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                         <li ui-sref-active="active" ><a ui-sref="groupPurchase" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span translate="global.menu.entities.groupPurchase">Group purchase</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="vegetableProvide" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.vegetableProvide">Vegetable provide</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="cart" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.cart">Cart</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="cartDetails" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.cartDetails">Cart details</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="provideMerchant" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.provideMerchant">Provide merchant</span></a></li>
+                        <!--<li ui-sref-active="active" ><a ui-sref="vegetableProvide" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                        <!--&#xA0;<span translate="global.menu.entities.vegetableProvide">Vegetable provide</span></a></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="cart" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                        <!--&#xA0;<span translate="global.menu.entities.cart">Cart</span></a></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="cartDetails" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                        <!--&#xA0;<span translate="global.menu.entities.cartDetails">Cart details</span></a></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="provideMerchant" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                        <!--&#xA0;<span translate="global.menu.entities.provideMerchant">Provide merchant</span></a></li>-->
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -64,17 +64,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench"></span>
-                            &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>
+                            &#xA0;<span>设置</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
-                            &#xA0;<span translate="global.menu.account.password">Password</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-cloud"></span>
-                            &#xA0;<span translate="global.menu.account.sessions">Sessions</span></a></li>
+                            &#xA0;<span>修改密码</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="deliveryAddress" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                            &#xA0;<span>收货地址</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" id="logout" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
-                            &#xA0;<span translate="global.menu.account.logout">Sign out</span></a></li>
+                            &#xA0;<span>退出</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span translate="global.menu.account.login">Sign in</span></a></li>
+                            &#xA0;<span>退出</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
-                            &#xA0;<span translate="global.menu.account.register">Register</span></a></li>
+                            &#xA0;<span>注册</span></a></li>
                     </ul>
                 </li>
                 <!--<li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">-->

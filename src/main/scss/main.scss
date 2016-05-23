@@ -260,3 +260,44 @@ ul#strength {
     position: relative;
     margin: 0;
 }
+
+.ct_logo{
+    margin-top: 5px;
+}
+
+.ct_header-bg{
+    height: 60px;
+    border: 1px;
+    background-color: #c7ddef;
+}
+.ct_header{
+    height: 45px;
+    margin: 22px auto;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+.h_search input[type="text"] {
+    width: 100%;
+    padding: 6px 16px;
+    border: 1px solid red;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    text-transform: capitalize;
+    border-radius:26px;
+    margin-top: -4px;
+}
+.h_search img {
+    margin-top: 6px;
+    no-repeat: 10px 5px;
+    cursor: pointer;
+    line-height: 1.5em;
+    outline: none;
+    position :relative;
+    margin-left: -71px;
+    margin-top: -1px;
+}
+
+.ct_cart{
+    margin-top: 5px;
+}
