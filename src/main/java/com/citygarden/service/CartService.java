@@ -103,17 +103,17 @@ public class CartService {
 
                 CartDetails re_cartDetail = null;
                 for(CartDetails cartDetails1 : cartDetailses){
-                   if(!cartDetails1.getId().equals(cartDetails.getId())){
+                   if(cartDetails1.getId().equals(cartDetails.getId())){
                        re_cartDetail = cartDetails1;
                        break;
                    }
-                    cart.getCartDetailsList().remove(re_cartDetail);
-                    totalTotal = totalTotal - re_cartDetail.getSubtotal();
-                    totalTotal = RoundDoubleUtil.round(totalTotal, 2);
-                    cart.setTotal(totalTotal);
-
-                    cartRepository.save(cart);
                 }
+                cart.getCartDetailsList().remove(re_cartDetail);
+                totalTotal = totalTotal - re_cartDetail.getSubtotal();
+                totalTotal = RoundDoubleUtil.round(totalTotal, 2);
+                cart.setTotal(totalTotal);
+
+                cartRepository.save(cart);
             }
         }
     }
