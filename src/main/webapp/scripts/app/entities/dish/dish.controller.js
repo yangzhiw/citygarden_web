@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('DishController', function ($scope, $state, Dish) {
+    .controller('DishController', function ($rootScope,$scope, $state, Dish,CartDetails,DishData) {
 
         $scope.dishs = [];
         $scope.loadAll = function() {
@@ -10,17 +10,45 @@ angular.module('citygardenWebApp')
                 console.log(result);
             });
         };
+
         $scope.loadAll();
 
+        $scope.cartDetails = {
+            count : Number,
+            dish   : {},
+            subtotal : ""
+        }
 
-        $scope.refresh = function () {
-            $scope.loadAll();
-            $scope.clear();
-        };
+        $scope.addCart = function(dish){
+            console.log(dish);
+            $scope.cartDetails.count = 1;
+            $scope.cartDetails.dish = dish;
+            $scope.cartDetails.subtotal = dish.discountPrice;
+            CartDetails.addCart( $scope.cartDetails,function(result){
+                $state.go('cart')
+            })
+        }
+    })
 
-        $scope.clear = function () {
-            $scope.dish = {
-                id: null
-            };
-        };
+    .controller('DishSearchController', function ($rootScope,$scope, $state,DishData, Dish,CartDetails) {
+        $scope.dishs = DishData.get();
+        $scope.cartDetails = {
+            count : Number,
+            dish   : {},
+            subtotal : ""
+        }
+
+        $scope.addCart = function(dish){
+            console.log(dish);
+            $scope.cartDetails.count = 1;
+            $scope.cartDetails.dish = dish;
+            $scope.cartDetails.subtotal = dish.discountPrice;
+            CartDetails.addCart( $scope.cartDetails,function(result){
+                $state.go('cart')
+            })
+        }
+    })
+
+
+    .controller('DishSearchingController', function ($rootScope,$scope, $state,DishData, Dish,CartDetails) {
     });

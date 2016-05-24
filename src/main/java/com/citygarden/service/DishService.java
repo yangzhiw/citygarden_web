@@ -77,8 +77,7 @@ public class DishService {
     public List<DishDTO> findByName(String name){
         Dish dish = new Dish();
         Query query = new Query();
-        Criteria criteria = new Criteria();
-        criteria.and(name).regex(dish.getChineseName());
+        Criteria criteria = Criteria.where("chineseName").regex(name);
         query.addCriteria(criteria);
         List<Dish> dishs = mongoTemplate.find(query, Dish.class);
 

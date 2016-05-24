@@ -21,3 +21,22 @@ angular.module('citygardenWebApp')
         })
 
     })
+
+    .factory('DishSearch', function ($resource, DateUtils) {
+        return $resource('api/dishs/seacher', {}, {
+            'get': { method: 'GET', isArray: true}
+        })
+
+    })
+
+    .factory('DishData', function () {
+        var tmp = {};
+        return {
+            get: function () {
+                return tmp;
+            },
+            set: function (data) {
+                tmp = data;
+            }
+        }
+   });

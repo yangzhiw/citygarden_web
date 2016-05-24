@@ -24,6 +24,43 @@ angular.module('citygardenWebApp')
                     }]
                 }
             })
+            .state('dishSearch', {
+                parent: 'entity',
+                url: '/dishSearchs',
+                data: {
+                    authorities: [],
+                    pageTitle: 'citygardenWebApp.dish.home.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/dish/dishSearch.html',
+                        controller: 'DishSearchController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('dish');
+                        $translatePartialLoader.addPart('global');
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('dishSearching', {
+                parent: 'entity',
+                url: '/dishSearching',
+                data: {
+                    authorities: [],
+                    pageTitle: 'citygardenWebApp.dishing.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/dish/dishSearching.html',
+                        controller: 'DishSearchingController'
+                    }
+                },
+                resolve: {
+                }
+            })
             .state('dish.detail', {
                 parent: 'entity',
                 url: '/dish/{id}',

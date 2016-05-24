@@ -6,10 +6,10 @@
         <div class="h_search col-md-5 col-xs-5 col-md-offset-2 row hidden-xs">
             <div class="clearfix" style=" margin-top: 11.5px;">
                 <div class="col-md-10 col-sm-10 col-xs-10">
-                    <input type="text" value="" />
+                    <input type="text" ng-model="name"/>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-2">
-                    <a href="#"><img id="search" src="../../../../assets/images/search_h.png"/></a>
+                    <a ng-click="searchDish(name)"><img id="search" src="../../../../assets/images/search_h.png"/></a>
                 </div>
             </div>
         </div>
@@ -67,12 +67,12 @@
                             &#xA0;<span>设置</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
                             &#xA0;<span>修改密码</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="deliveryAddress" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="deliveryAddress" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                             &#xA0;<span>收货地址</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" id="logout" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
                             &#xA0;<span>退出</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span>退出</span></a></li>
+                            &#xA0;<span>登录</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
                             &#xA0;<span>注册</span></a></li>
                     </ul>
