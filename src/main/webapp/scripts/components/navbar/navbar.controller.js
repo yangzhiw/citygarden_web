@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('NavbarController', function ($rootScope,$scope, $location, $state,Auth, Principal,DishSearch,DishData, ENV) {
+    .controller('NavbarController', function ($rootScope,$scope, $location, $state,Auth, Principal,DishSearch,DishData,ProvideMerchant, ENV) {
         $scope.isAuthenticated = Principal.isAuthenticated;
         $scope.$state = $state;
         $scope.inProduction = ENV === 'prod';
 
         $rootScope.dishData = [];
+        $scope.provides = [];
+
+        $scope.loadAll = function(){
+            ProvideMerchant.query(function(result){
+                $scope.provides = result;
+                console.log(result);
+            })
+        };
+
+        $scope.loadAll();
+
 
         $scope.logout = function () {
             Auth.logout();
@@ -21,5 +32,14 @@ angular.module('citygardenWebApp')
                     $state.go('dishSearch');
                 });
             }
-        }
+        };
+        $(".fenlei").hover(function(){
+            $(this).css("background-color","#e7e7e7");
+        },function(){
+            $(this).css("background-color"," #c7ddef");
+        })
+        $(".fenlei").click(function(){
+            $("#fen_ul").toggle();
+            $(".fenlei").css("background-color","#e7e7e7");
+        });
     });

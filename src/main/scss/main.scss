@@ -301,3 +301,32 @@ ul#strength {
 .ct_cart{
     margin-top: 5px;
 }
+
+.ct_select ul{
+    position: absolute;
+    z-index: 999;
+    background: #ffffff;
+    li{
+        display: block;
+        width: 115px;
+        height:40px;
+        line-height: 40px;
+        text-align: center;
+    }
+}
+.ct_select .fenlei{
+    width:115px;
+    height:50px;
+    line-height: 50px;
+    display:block;
+    background-color: #c7ddef;
+    text-decoration: none;
+    text-align:center;
+    color: #555;
+}
+.ct_select ul li a{
+    text-decoration: none;
+    color:#555;
+    font-family: "微软雅黑";
+}
+.ct_select ul li:hover{background: #e7e7e7}
