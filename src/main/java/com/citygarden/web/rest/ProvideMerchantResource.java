@@ -33,11 +33,11 @@ public class ProvideMerchantResource {
 
     /**
      * POST  /provideMerchants -> Create a new provideMerchant.
-     */
-    @RequestMapping(value = "/provideMerchants",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
+//     */
+//    @RequestMapping(value = "/provideMerchants",
+//        method = RequestMethod.POST,
+//        produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Timed
     public ResponseEntity<ProvideMerchantDTO> createProvideMerchant(@RequestBody ProvideMerchantDTO provideMerchantDTO) throws URISyntaxException {
         log.debug("REST request to save ProvideMerchant : {}", provideMerchantDTO);
         if (provideMerchantDTO.getId() != null) {
@@ -52,10 +52,10 @@ public class ProvideMerchantResource {
     /**
      * PUT  /provideMerchants -> Updates an existing provideMerchant.
      */
-    @RequestMapping(value = "/provideMerchants",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
+//    @RequestMapping(value = "/provideMerchants",
+//        method = RequestMethod.PUT,
+//        produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Timed
     public ResponseEntity<ProvideMerchantDTO> updateProvideMerchant(@RequestBody ProvideMerchantDTO provideMerchantDTO) throws URISyntaxException {
         log.debug("REST request to update ProvideMerchant : {}", provideMerchantDTO);
         if (provideMerchantDTO.getId() == null) {
@@ -100,13 +100,13 @@ public class ProvideMerchantResource {
     /**
      * DELETE  /provideMerchants/:id -> delete the "id" provideMerchant.
      */
-    @RequestMapping(value = "/provideMerchants/{id}",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> deleteProvideMerchant(@PathVariable String id) {
-        log.debug("REST request to delete ProvideMerchant : {}", id);
-        provideMerchantService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("provideMerchant", id.toString())).build();
-    }
+//    @RequestMapping(value = "/provideMerchants/{id}",
+//        method = RequestMethod.DELETE,
+//        produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Timed
+//    public ResponseEntity<Void> deleteProvideMerchant(@PathVariable String id) {
+//        log.debug("REST request to delete ProvideMerchant : {}", id);
+//        provideMerchantService.delete(id);
+//        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("provideMerchant", id.toString())).build();
+//    }
 }

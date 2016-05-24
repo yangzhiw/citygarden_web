@@ -89,9 +89,36 @@ public class ProvideMerchantService {
      */
     public ProvideMerchantDTO findOne(String id) {
         log.debug("Request to get ProvideMerchant : {}", id);
-        ProvideMerchant provideMerchant = provideMerchantRepository.findOne(id);
-    //    ProvideMerchantDTO provideMerchantDTO = provideMerchantMapper.provideMerchantToProvideMerchantDTO(provideMerchant);
-        return null;
+        ProvideMerchant x = provideMerchantRepository.findOne(id);
+        ProvideMerchantDTO provideMerchantDTO = new ProvideMerchantDTO();
+        provideMerchantDTO.setId(x.getId());
+        provideMerchantDTO.setName(x.getName());
+        provideMerchantDTO.setChineseName(x.getChineseName());
+        provideMerchantDTO.setDescription(x.getDescription());
+        List<DishDTO> dishDTOs = new ArrayList<>();
+        x.getDishs().forEach(y -> {
+            DishDTO z = new DishDTO();
+            z.setId(y.getId());
+            z.setName(y.getName());
+            z.setChineseName(y.getChineseName());
+            z.setOriginalPrice(y.getOriginalPrice());
+            z.setDiscountPrice(y.getDiscountPrice());
+            z.setDescription(y.getDescription());
+            try {
+                z.setDishPhoto(dishPhotoUtilService.getDishPhoto(y.getName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dishDTOs.add(z);
+        });
+        provideMerchantDTO.setDishs(dishDTOs);
+        try {
+            provideMerchantDTO.setProvidePhoto(provideMerchantPhotoService.getProvidePhoto(x.getName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return provideMerchantDTO;
     }
 
     /**

@@ -8,6 +8,7 @@ angular.module('citygardenWebApp')
 
         $rootScope.dishData = [];
         $scope.provides = [];
+        $scope.isShow = false;
 
         $scope.loadAll = function(){
             ProvideMerchant.query(function(result){
@@ -37,9 +38,12 @@ angular.module('citygardenWebApp')
             $(this).css("background-color","#e7e7e7");
         },function(){
             $(this).css("background-color"," #c7ddef");
-        })
-        $(".fenlei").click(function(){
-            $("#fen_ul").toggle();
-            $(".fenlei").css("background-color","#e7e7e7");
         });
+
+        $scope.clickFenlei = function(){
+            $scope.isShow = !$scope.isShow;
+        };
+        $scope.clickLi = function(){
+            $scope.isShow = false;
+        };
     });

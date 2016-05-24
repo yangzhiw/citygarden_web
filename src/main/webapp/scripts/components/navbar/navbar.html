@@ -4,10 +4,10 @@
             <a ui-sref="home"><img src="../../../../assets/images/logo.png"/></a>
         </div>
         <div class="col-md-1 ct_select" style="width: 115px;height:50px;background-color: #c7ddef; position:relative;margin-left: 77px">
-            <a class="fenlei">菜场分类 <b class="caret"></b></a>
-            <ul style="width: 115px;display: none" id="fen_ul">
-                <li ng-repeat="provide in provides">
-                    <a>{{provide.chineseName}}</a>
+            <a class="fenlei" ng-click="clickFenlei()">菜场分类 <b class="caret"></b></a>
+            <ul style="width: 115px" id="fen_ul" ng-show="isShow">
+                <li ng-repeat="provide in provides" ng-click="clickLi()">
+                    <a ui-sref="provideMerchant.detail({id:provide.id})">{{provide.chineseName}}</a>
                 </li>
             </ul>
         </div>
