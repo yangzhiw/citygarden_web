@@ -27,7 +27,7 @@ angular.module('citygardenWebApp')
                 parent: 'entity',
                 url: '/provideMerchant/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: [],
                     pageTitle: 'citygardenWebApp.provideMerchant.detail.title'
                 },
                 views: {

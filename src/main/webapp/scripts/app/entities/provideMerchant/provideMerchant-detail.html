@@ -1,21 +1,22 @@
 
 <div>
-    <h2><span translate="citygardenWebApp.provideMerchant.detail.title">ProvideMerchant</span> {{provideMerchant.id}}</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th translate="entity.detail.field">Field</th>
-                <th translate="entity.detail.value">Value</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-md-12 titleA">
+            <div style="background-color: #70DB93; margin: 15px 0px;padding: 5px 15px 5px 15px;box-shadow:3px 3px 3px;">
+                <a name="1" href="#"><span style="color: #FFFFFF; font-size: 16px;">{{provideMerchant.chineseName}}</span></a>
+            </div>
+        </div>
     </div>
-    <button type="submit"
-            onclick="window.history.back()"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
-    </button>
+    <div class="row">
+        <div class="col-sm-6 col-md-3"  ng-repeat="dish in provideMerchant.dishs">
+        <div class="thumbnail">
+                <a ui-sref="dish.detail({id:dish.id})"><img ng-src="data:image/jpg;base64,{{dish.dishPhoto}}"/></a>
+                <div class="caption text-center">
+                    <h3 class="text-center" ui-sref="dish.detail({id:dish.id})" style="color: royalblue">{{dish.chineseName}}</h3>
+                    <p class="text-center" ui-sref="dish.detail({id:dish.id})">{{dish.description}}</p>
+                    <img src="../../../../assets/images/cart.png" ng-click="addCart(dish)"/>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

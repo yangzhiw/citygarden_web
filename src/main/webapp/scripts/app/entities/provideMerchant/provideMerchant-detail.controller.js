@@ -3,6 +3,7 @@
 angular.module('citygardenWebApp')
     .controller('ProvideMerchantDetailController', function ($scope, $rootScope, $stateParams, entity, ProvideMerchant) {
         $scope.provideMerchant = entity;
+        console.log(entity);
         $scope.load = function (id) {
             ProvideMerchant.get({id: id}, function(result) {
                 $scope.provideMerchant = result;
