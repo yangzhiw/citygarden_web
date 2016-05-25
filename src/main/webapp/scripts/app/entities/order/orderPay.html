@@ -2,7 +2,7 @@
     <span class="spanPrice">支付金额：</span><span class="">&yen;{{order.totalPrice }}</span>
     <span class="spanOid">订单编号：{{order.id }}</span>
     <br/>
-    <span class="spanOid">订单时间：{{order.date}}</span>
+    <span class="spanOid">订单时间：{{order.date | date : "yyyy:MM:dd HH:mm:ss"}}</span>
 </div>
 
 <a style="margin-top: 20px" ng-click="bcpay()">去支付</a>

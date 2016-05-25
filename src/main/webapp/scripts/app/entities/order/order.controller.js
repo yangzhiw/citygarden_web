@@ -24,6 +24,15 @@ angular.module('citygardenWebApp')
             $scope.isInit = false;
         };
 
+        $scope.ensureDelivery = function(order){
+            $scope.order = order;
+            $scope.order.orderStatus = 4;
+            console.log($scope.order);
+            Order.update($scope.order,function(result){
+               $state.reload();
+            })
+        }
+
  })
     .controller('OrderPayController', function ($scope,$stateParams, $state, Order,Payment,md5) {
 

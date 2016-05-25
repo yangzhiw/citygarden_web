@@ -161,8 +161,7 @@ public class OrderService {
         Order order = orderRepository.findOne(id);
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(order.getId());
-        orderDTO.setDate(order.getDate().toString("yyyy:MM:dd HH:mm:dd"));
-        orderDTO.setLastModifiedDate(order.getLastModifiedDate().toString("yyyy:MM:dd HH:mm:dd"));
+        orderDTO.setDate(order.getCreatedDate());
         orderDTO.setTotalPrice(order.getTotalPrice());
         orderDTO.setDeliveryAddress(order.getDeliveryAddress());
         orderDTO.setDeliveryWay(order.getDeliveryWay());

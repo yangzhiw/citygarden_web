@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class OrderDTO {
     private double totalPrice;
     @Field("delivery_way")
     private String deliveryWay;
-    private String date;
+    private ZonedDateTime date;
     @Field("order_status")
     private String orderStatus;
     private String deliveryAddress;
@@ -54,11 +55,11 @@ public class OrderDTO {
         this.deliveryWay = deliveryWay;
     }
 
-    public String getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(ZonedDateTime date) {
         this.date = date;
     }
 

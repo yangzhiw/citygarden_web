@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -31,8 +32,11 @@ public class Order implements Serializable {
 
     @CreatedDate
     @Field("created_date")
-    private DateTime date = new DateTime().now();
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
+    @LastModifiedDate
+    @Field("last_modified_date")
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
     @Field("order_status")
     private String orderStatus;
@@ -41,10 +45,6 @@ public class Order implements Serializable {
     private String username;
 
     private List<OrderItem> orderItemList = new ArrayList<>();
-
-    @LastModifiedDate
-    @Field("last_modified_date")
-    private DateTime lastModifiedDate = DateTime.now();
 
     public String getId() {
         return id;
@@ -70,12 +70,20 @@ public class Order implements Serializable {
         this.deliveryWay = deliveryWay;
     }
 
-    public DateTime getDate() {
-        return date;
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setDate(DateTime date) {
-        this.date = date;
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public ZonedDateTime getLastModifiedDate() {
+        return lastModifiedDate;
     }
 
     public String getOrderStatus() {
@@ -110,14 +118,6 @@ public class Order implements Serializable {
         this.username = username;
     }
 
-    public DateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(DateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -147,12 +147,10 @@ public class Order implements Serializable {
             "id='" + id + '\'' +
             ", totalPrice=" + totalPrice +
             ", deliveryWay='" + deliveryWay + '\'' +
-            ", date=" + date +
             ", orderStatus='" + orderStatus + '\'' +
             ", deliveryAddress='" + deliveryAddress + '\'' +
             ", username='" + username + '\'' +
             ", orderItemList=" + orderItemList +
-            ", lastModifiedDate=" + lastModifiedDate +
             '}';
     }
 }

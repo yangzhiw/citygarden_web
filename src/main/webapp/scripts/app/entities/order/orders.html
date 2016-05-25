@@ -23,8 +23,11 @@
                         <span ng-if="order.orderStatus == 1">
                             <a ui-sref="orderpay({id:order.id})">{{orderStatus[order.orderStatus]}}</a>
                         </span>
-                        <span ng-if="order.orderStatus != 1">
+                        <span ng-if="order.orderStatus != 1 && order.orderStatus != 3">
                             {{orderStatus[order.orderStatus]}}
+                        </span>
+                        <span ng-if="order.orderStatus == 3">
+                            <a ng-click="ensureDelivery(order)">{{orderStatus[order.orderStatus]}}</a>
                         </span>
                     </span>
                     <div>
@@ -59,8 +62,11 @@
                         <span ng-if="order.orderStatus == 1">
                             <a ui-sref="orderpay({id:order.id})">{{orderStatus[order.orderStatus]}}</a>
                         </span>
-                        <span ng-if="order.orderStatus != 1">
+                         <span ng-if="order.orderStatus != 1 && order.orderStatus != 3">
                             {{orderStatus[order.orderStatus]}}
+                        </span>
+                        <span ng-if="order.orderStatus == 3">
+                            <a ng-click="ensureDelivery(order)">{{orderStatus[order.orderStatus]}}</a>
                         </span>
                     </span>
                     <div>

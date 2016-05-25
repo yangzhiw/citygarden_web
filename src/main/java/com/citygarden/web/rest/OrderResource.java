@@ -82,9 +82,6 @@ public class OrderResource {
     @Timed
     public ResponseEntity<Order> updateOrder(@RequestBody Order order) throws URISyntaxException {
         log.debug("REST request to update Order : {}", order);
-//        if (order.getId() == null) {
-//            return createOrder(order);
-//        }
         Order result = orderRepository.save(order);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("order", order.getId().toString()))
