@@ -2,11 +2,13 @@ package com.citygarden.service;
 
 import com.citygarden.domain.*;
 import com.citygarden.repository.*;
+import com.citygarden.security.SecurityUtils;
 import com.citygarden.web.rest.dto.DishDTO;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Administrator on 2016/5/22 0022.
@@ -30,6 +32,9 @@ public class RepertoryManagerService {
     @Inject
     private ProfitReportsRepository profitReportsRepository;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * 更新菜名库存
      * @param order
@@ -39,6 +44,7 @@ public class RepertoryManagerService {
        if(order == null){
            return;
        }else{
+           updateUser(order);
            List<OrderItem> orderItems = order.getOrderItemList();
            for(OrderItem orderItem : orderItems){
                int count = orderItem.getCount();
@@ -59,6 +65,18 @@ public class RepertoryManagerService {
                }
            }
        }
+    }
+
+    private void updateUser(Order order) {
+        String username = SecurityUtils.getCurrentUserLogin();
+        Optional<User> user = userRepository.findOneByLogin(username);
+        User user1 = user.get();
+        if(user1 != null){
+            double totalPrice = user1.getTotalPrice();
+            user1.setTotalPrice(totalPrice + order.getTotalPrice());
+
+            userRepository.save(user1);
+        }
     }
 
     private void saveProfit(OrderItem orderItem) {

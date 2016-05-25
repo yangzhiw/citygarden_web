@@ -2,7 +2,9 @@ package com.citygarden.service;
 
 import com.citygarden.config.SecurityConfiguration;
 import com.citygarden.domain.Order;
+import com.citygarden.domain.User;
 import com.citygarden.repository.OrderRepository;
+import com.citygarden.repository.UserRepository;
 import com.citygarden.security.SecurityUtils;
 import com.citygarden.service.util.PaymentUtil;
 import com.citygarden.web.rest.dto.OrderDTO;
@@ -18,6 +20,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by Administrator on 2016/3/4 0004.
@@ -29,6 +32,9 @@ public class OrderService {
 
     @Inject
     private OrderRepository orderRepository;
+
+    @Inject
+    private UserRepository userRepository;
 
     @Inject
     private Environment env;
