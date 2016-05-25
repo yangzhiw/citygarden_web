@@ -10,7 +10,7 @@ angular.module('citygardenWebApp')
             count : Number,
             dish   : {},
             subtotal : ""
-        }
+        };
 
         Principal.identity().then(function(account) {
             $scope.account = account;
@@ -27,18 +27,17 @@ angular.module('citygardenWebApp')
 
         $scope.changeCount = function (count) {
             var dishPrice = (Number)($scope.dish.discountPrice);
-            var r = /^[0-9]*[1-9][0-9]*$/
+            var r = /^[0-9]*[1-9][0-9]*$/;
             if(r.test(count)){
                 count = (Number)(count);
                 $scope.cartDetails.subtotal = dishPrice * (count);
             }else{
-                alert("输入正确的整数！")
-            }
+                alert("输入正确的整数！");
+            };
 
-        }
+        };
 
         $scope.decrement = function(dish){
-            console.log($scope.dish)
             var count = $scope.cartDetails.count;
             count = (Number)(count);
             var dishPrice = (Number)(dish.discountPrice);
@@ -47,7 +46,7 @@ angular.module('citygardenWebApp')
                 $scope.cartDetails.count = count -1;
                 $scope.cartDetails.subtotal = dishPrice * (count-1);
             }
-        }
+        };
 
         $scope.increment = function(dish){
             var count = $scope.cartDetails.count;
@@ -59,7 +58,7 @@ angular.module('citygardenWebApp')
                 $scope.cartDetails.count = count +1;
                 $scope.cartDetails.subtotal = dishPrice * (count+1);
             }
-        }
+        };
 
         $scope.addCart = function(dish){
             console.log(dish);
@@ -67,7 +66,7 @@ angular.module('citygardenWebApp')
             $scope.cartDetails.dish = dish;
             $scope.cartDetails.subtotal = dish.discountPrice;
             CartDetails.addCart( $scope.cartDetails,function(result){
-                $state.go('cart')
-            })
-        }
+                $state.go('cart');
+            });
+        };
     });

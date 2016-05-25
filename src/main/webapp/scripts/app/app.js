@@ -99,6 +99,10 @@ angular.module('citygardenWebApp', ['LocalStorageModule', 'tmh.dynamicLocale', '
                 'announcement@': {
                     templateUrl: 'scripts/app/entities/announcement/announcements.html',
                     controller: 'AnnouncementController'
+                },
+                'foot@': {
+                    templateUrl: 'scripts/app/foot/foot.html',
+                    controller: 'FootController'
                 }
             },
             resolve: {

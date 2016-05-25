@@ -1,0 +1,58 @@
+<div style="background-color: #40C4B2;margin-top: 50px;padding-bottom:90px;padding-top: 90px;">
+    <div class="container">
+        <div class="col-sm-6 col-md-3 ct_f_nav">
+            <h3>购买指南</h3>
+            <ul>
+                <li><a href="#">账户注册</a></li>
+                <li><a href="#">购买流程</a></li>
+                <li><a href="#">发票制度</a></li>
+                <li><a href="#">联系客服</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-6 col-md-3 ct_f_nav">
+            <h3>支付方式</h3>
+            <ul>
+                <li><a href="#">货到付款</a></li>
+                <li><a href="#">在线支付</a></li>
+                <li><a href="#">优惠券</a></li>
+                <li><a href="#">账户余额</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-6 col-md-3 ct_f_nav">
+            <h3>配送标准</h3>
+            <ul>
+                <li><a href="#">配送范围</a></li>
+                <li><a href="#">运费信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-6 col-md-3 ct_f_nav">
+            <h3>售后服务</h3>
+            <ul>
+                <li><a href="#">退换货政策</a></li>
+                <li><a href="#">退换货流程</a></li>
+                <li><a href="#">退款说明</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row" style="background-color: #2DA89B;height: 78px;">
+    <p style="text-align: center;font-size: 0.9725em;line-height: 1.8em;color: #ffffff;margin: 25px;">Copyright &copy; 2016.</p>
+    <a class="cg_move" id="move" href="#"><img src="../../../../assets/images/foot_move/top_move.png"></a>
+</div>
+<script type="text/javascript">
+    window.onscroll=function(){
+        var oMove=document.getElementById("move");
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        var oLeft=document.documentElement.clientWidth||document.body.clientWidth;
+        var oTop=document.documentElement.clientHeight||document.body.clientHeight;
+
+        if(scrollTop<=100){
+            oMove.style.display="none";
+        }else{
+            oMove.style.display="block";
+//                    oMove.style.left=oLeft-oBtn.offsetWidth;
+            oMove.style.top=oTop-40+"px";
+        }
+    }
+</script>
