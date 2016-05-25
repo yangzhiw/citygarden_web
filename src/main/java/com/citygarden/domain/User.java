@@ -81,10 +81,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("delivery_address")
     private DeliveryAddress deliveryAddress;
 
-    @DBRef(lazy = true)
-    @Field("user_level_definition")
-    private UserLevalDefinition userLevalDefinition;
-
     public String getId() {
         return id;
     }
@@ -209,14 +205,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public UserLevalDefinition getUserLevalDefinition() {
-        return userLevalDefinition;
-    }
-
-    public void setUserLevalDefinition(UserLevalDefinition userLevalDefinition) {
-        this.userLevalDefinition = userLevalDefinition;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -258,7 +246,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", authorities=" + authorities +
             ", totalPrice=" + totalPrice +
             ", deliveryAddress=" + deliveryAddress +
-            ", userLevalDefinition=" + userLevalDefinition +
             '}';
     }
 }

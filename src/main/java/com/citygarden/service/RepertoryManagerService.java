@@ -7,6 +7,7 @@ import com.citygarden.web.rest.dto.DishDTO;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,12 @@ public class RepertoryManagerService {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private UserLevalDefinitionRepository userLevalDefinitionRepository;
+
+    @Inject
+    private UserLevelRepository userLevelRepository;
 
     /**
      * 更新菜名库存
@@ -74,8 +81,90 @@ public class RepertoryManagerService {
         if(user1 != null){
             double totalPrice = user1.getTotalPrice();
             user1.setTotalPrice(totalPrice + order.getTotalPrice());
-
             userRepository.save(user1);
+            updateUserLevel(user1);
+        }
+    }
+
+    private void updateUserLevel(User user1) {
+        double userScore = user1.getTotalPrice();
+
+        int huangj_score = 0;
+        int baij_score = 0;
+        int zhuans_score = 0;
+
+        String huanj_discount  =  null;
+        String baij_discount  =  null;
+        String zuans_discount  =  null;
+
+        List<UserLevalDefinition> userLevalDefinitions = userLevalDefinitionRepository.findAll();
+        for (UserLevalDefinition userLevalDefinition : userLevalDefinitions) {
+            if(userLevalDefinition.getName().equals("黄金会员")) {
+                huangj_score = userLevalDefinition.getIntegral();
+                huanj_discount = userLevalDefinition.getDiscount();
+            } else if(userLevalDefinition.getName().equals("白金会员")) {
+                 baij_score = userLevalDefinition.getIntegral();
+                 baij_discount = userLevalDefinition.getDiscount();
+            }
+            if(userLevalDefinition.getName().equals("钻石会员")) {
+                zhuans_score = userLevalDefinition.getIntegral();
+                zuans_discount = userLevalDefinition.getDiscount();
+            }
+        }
+        String username = SecurityUtils.getCurrentUserLogin();
+        UserLevel userLevel = userLevelRepository.findByUserName(username);
+
+        if(userLevel == null){
+            UserLevel userLevel1 = new UserLevel();
+            if(userScore<huangj_score){
+                userLevel1.setDiscount(Integer.valueOf(100));
+                userLevel1.setUserName(username);
+                userLevel1.setUserLevel("大众会员");
+            }
+
+            if(huangj_score <= userScore && userScore< baij_score){
+                userLevel1.setDiscount(Integer.valueOf(huanj_discount));
+                userLevel1.setUserName(username);
+                userLevel1.setUserLevel("黄金会员");
+            }
+
+            if(baij_score <= userScore && userScore< zhuans_score){
+                userLevel1.setDiscount(Integer.valueOf(baij_discount));
+                userLevel1.setUserName(username);
+                userLevel1.setUserLevel("白金会员");
+            }
+
+            if(zhuans_score <= userScore){
+                userLevel1.setDiscount(Integer.valueOf(zhuans_score));
+                userLevel1.setUserName(username);
+                userLevel1.setUserLevel("钻石会员");
+            }
+            userLevelRepository.save(userLevel1);
+        }else{
+            if(userScore<huangj_score){
+                userLevel.setDiscount(Integer.valueOf(100));
+                userLevel.setUserName(username);
+                userLevel.setUserLevel("大众会员");
+            }
+
+            if(huangj_score <= userScore && userScore< baij_score){
+                userLevel.setDiscount(Integer.valueOf(huanj_discount));
+                userLevel.setUserName(username);
+                userLevel.setUserLevel("黄金会员");
+            }
+
+            if(baij_score <= userScore && userScore< zhuans_score){
+                userLevel.setDiscount(Integer.valueOf(baij_discount));
+                userLevel.setUserName(username);
+                userLevel.setUserLevel("白金会员");
+            }
+
+            if(zhuans_score <= userScore){
+                userLevel.setDiscount(Integer.valueOf(zhuans_score));
+                userLevel.setUserName(username);
+                userLevel.setUserLevel("钻石会员");
+            }
+            userLevelRepository.save(userLevel);
         }
     }
 
