@@ -6,19 +6,19 @@
     </head>
     <body>
         <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
+            亲
         </p>
         <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
+            账户已经被创建，请点击下方链接激活!
         </p>
         <p>
           <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}"
              th:text="|${user.login}|">login</a>
         </p>
         <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
+            <span th:text="#{email.activation.text2}">问候, </span>
             <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
+            <em th:text="#{email.signature}">橘子菜园.</em>
         </p>
     </body>
 </html>

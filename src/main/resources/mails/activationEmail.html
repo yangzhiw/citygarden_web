@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.activation.title}">JHipster activation</title>
+        <title th:text="#{email.activation.title}">激活邮件</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
         <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
+            亲
         </p>
         <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
+           账户已经被创建，请点击下方链接激活!
         </p>
         <p>
             <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
-               th:text="|${user.login}|">Activation Link</a>
+               th:text="|${user.login}|">激活</a>
         </p>
         <p>
             <span th:text="#{email.activation.text2}">Regards, </span>

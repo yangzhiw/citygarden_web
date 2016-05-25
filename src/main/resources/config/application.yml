@@ -25,6 +25,23 @@ spring:
     thymeleaf:
         mode: XHTML
 
+    data:
+       mongodb:
+          uri: mongodb://114.215.88.199:27017
+          database: citygarden_web
+    mail:
+           host: smtp.qq.com
+           port: 587
+           username: 993505105@qq.com
+           password: hugntajdklvlbfgf
+           protocol: smtp
+           tls: true
+           auth: true
+           from: 993505105@qq.com
+server:
+    port: 80
+
+
 security:
     basic:
         enabled: false
@@ -45,8 +62,6 @@ jhipster:
         #exposed-headers:
         #allow-credentials: true
         #max-age: 1800
-    mail:
-        from: 993505105@qq.com
     security:
         rememberme:
             # security key (this key should be unique for your application, and kept secret)

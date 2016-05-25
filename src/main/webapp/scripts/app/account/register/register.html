@@ -1,132 +1,132 @@
 <div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1 translate="register.title">Registration</h1>
+            <h1>欢迎注册</h1>
 
-            <div class="alert alert-success" ng-show="success" translate="register.messages.success">
-                <strong>Registration saved!</strong> Please check your email for confirmation.
+            <div class="alert alert-success" ng-show="success">
+                <strong>注册成功</strong> 请去邮箱激活！
+                </div>
+        </div>
+
+            <div class="alert alert-danger" ng-show="error">
+                <strong>注册失败</strong> 请再次尝试
             </div>
 
-            <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
-                <strong>Registration failed!</strong> Please try again later.
+            <div class="alert alert-danger" ng-show="errorUserExists">
+                <strong>登录名已存在</strong> 换一个吧
             </div>
 
-            <div class="alert alert-danger" ng-show="errorUserExists" translate="register.messages.error.userexists">
-                <strong>Login name already registered!</strong> Please choose another one.
+            <div class="alert alert-danger" ng-show="errorEmailExists">
+                <strong>邮箱已经存在</strong> 换一个吧.
             </div>
 
-            <div class="alert alert-danger" ng-show="errorEmailExists" translate="register.messages.error.emailexists">
-                <strong>E-mail is already in use!</strong> Please choose another one.
-            </div>
-
-            <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
-                The password and its confirmation do not match!
+            <div class="alert alert-danger" ng-show="doNotMatch">
+                两次输入密码不匹配
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
 
                 <div class="form-group">
-                    <label class="control-label" for="login" translate="global.form.username">Username</label>
+                    <label class="control-label" for="login">登录名</label>
                     <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}"
-                           ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-z0-9]*$/" required>
+                           ng-model="registerAccount.login" ng-minlength=5 ng-maxlength=20 ng-pattern="/^[a-z0-9]*$/" required>
                     <div ng-show="form.login.$dirty && form.login.$invalid">
                         <p class="help-block"
-                               ng-show="form.login.$error.required" translate="register.messages.validate.login.required">
-                            Your username is required.
+                               ng-show="form.login.$error.required">
+                            必须
                         </p>
                         <p class="help-block"
-                               ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength">
-                            Your username is required to be at least 1 character.
+                               ng-show="form.login.$error.minlength">
+                            至少5个字符
                         </p>
                         <p class="help-block"
-                               ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength">
-                            Your username cannot be longer than 50 characters.
+                               ng-show="form.login.$error.maxlength">
+                           最多20个字符
                         </p>
                         <p class="help-block"
-                               ng-show="form.login.$error.pattern" translate="register.messages.validate.login.pattern">
-                            Your username can only contain lower-case letters and digits.
+                               ng-show="form.login.$error.pattern">
+                            格式不正确.
                     </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="email" translate="global.form.email">E-mail</label>
+                    <label class="control-label" for="email">邮箱</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
                            ng-model="registerAccount.email" ng-minlength=5 ng-maxlength=100 required>
                     <div ng-show="form.email.$dirty && form.email.$invalid">
                         <p class="help-block"
-                               ng-show="form.email.$error.required" translate="global.messages.validate.email.required">
-                            Your e-mail is required.
+                               ng-show="form.email.$error.required">
+                           必须
                         </p>
                         <p class="help-block"
-                               ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid">
-                            Your e-mail is invalid.
+                               ng-show="form.email.$error.email">
+                            无效邮箱
                         </p>
                         <p class="help-block"
-                               ng-show="form.email.$error.minlength" translate="global.messages.validate.email.minlength">
-                            Your e-mail is required to be at least 5 characters.
+                               ng-show="form.email.$error.minlength">
+                            至少5个字符
                         </p>
                         <p class="help-block"
-                               ng-show="form.email.$error.maxlength" translate="global.messages.validate.email.maxlength">
-                            Your e-mail cannot be longer than 100 characters.
+                               ng-show="form.email.$error.maxlength">
+                            最多100个字符
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>mobile</label>
+                    <label>手机号</label>
                     <input type="mobile" class="form-control" name="mobile" placeholder="Your mobile"
                            ng-model="registerAccount.mobile" ng-minlength=11 required>
                     <div ng-show="form.mobile.$dirty && form.mobile.$invalid">
                         <p class="help-block"
-                           ng-show="form.mobile.$error.required" translate="global.messages.validate.mobile.required">
-                            Your mobilel is required.
+                           ng-show="form.mobile.$error.required">
+                           必须.
                         </p>
                         <p class="help-block"
-                           ng-show="form.mobile.$error.mobile" translate="global.messages.validate.mobile.invalid">
-                            Your mobile is invalid.
+                           ng-show="form.mobile.$error.mobile">
+                            无效手机号
                         </p>
                         <p class="help-block"
-                           ng-show="form.mobile.$error.minlength" translate="global.messages.validate.mobile.minlength">
-                            Your e-mail is required to be at least 11 characters.
+                           ng-show="form.mobile.$error.minlength">
+                           至少11位
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="password" translate="global.form.newpassword">New password</label>
+                    <label class="control-label" for="password">密码</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
-                           ng-model="registerAccount.password" ng-minlength=5 ng-maxlength=50 required>
+                           ng-model="registerAccount.password" ng-minlength=5 ng-maxlength=20 required>
                     <div ng-show="form.password.$dirty && form.password.$invalid">
                         <p class="help-block"
-                               ng-show="form.password.$error.required" translate="global.messages.validate.newpassword.required">
-                            Your password is required.
+                               ng-show="form.password.$error.required">
+                           必须
                         </p>
                         <p class="help-block"
-                               ng-show="form.password.$error.minlength" translate="global.messages.validate.newpassword.minlength">
-                            Your password is required to be at least 5 characters.
+                               ng-show="form.password.$error.minlength">
+                            至少5位
                         </p>
                         <p class="help-block"
-                               ng-show="form.password.$error.maxlength" translate="global.messages.validate.newpassword.maxlength">
-                            Your password cannot be longer than 50 characters.
+                               ng-show="form.password.$error.maxlength">
+                            最多20位
                         </p>
                     </div>
                     <password-strength-bar password-to-check="registerAccount.password"></password-strength-bar>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="confirmPassword" translate="global.form.confirmpassword">New password confirmation</label>
+                    <label class="control-label" for="confirmPassword">确认密码</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{'global.form.confirmpassword.placeholder' | translate}}"
-                           ng-model="confirmPassword" ng-minlength=5 ng-maxlength=50 required>
+                           ng-model="confirmPassword" ng-minlength=5 ng-maxlength=20 required>
                     <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
                         <p class="help-block"
-                               ng-show="form.confirmPassword.$error.required" translate="global.messages.validate.confirmpassword.required">
-                            Your confirmation password is required.
+                               ng-show="form.confirmPassword.$error.required">
+                            必须
                         </p>
                         <p class="help-block"
-                               ng-show="form.confirmPassword.$error.minlength" translate="global.messages.validate.confirmpassword.minlength">
-                            Your confirmation password is required to be at least 5 characters.
-                        </p>
+                               ng-show="form.confirmPassword.$error.minlength">
+                            至少5位                        </p>
                         <p class="help-block"
-                               ng-show="form.confirmPassword.$error.maxlength" translate="global.messages.validate.confirmpassword.maxlength">
-                            Your confirmation password cannot be longer than 50 characters.
+                               ng-show="form.confirmPassword.$error.maxlength">
+                            最多20位
                         </p>
                     </div>
                 </div>
@@ -134,9 +134,6 @@
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button">Register</button>
             </form>
             <p></p>
-            <div class="alert alert-warning" translate="global.messages.info.authenticated">
-                If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>
         </div>
     </div>
 </div>
