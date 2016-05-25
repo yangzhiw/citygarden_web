@@ -1,7 +1,7 @@
 # ===================================================================
-# Spring Boot configuration.
+# Spring Boot configuration for the "dev" profile.
 #
-# This configuration is used for unit/integration tests.
+# This configuration overrides the application.yml file.
 # ===================================================================
 
 # ===================================================================
@@ -11,50 +11,58 @@
 # ===================================================================
 
 spring:
+    profiles:
+        active: dev
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            host: localhost
-            port: 27117
+            uri: mongodb://localhost:27017
             database: citygarden_web
     mail:
-        host: localhost
-    mvc:
-        favicon:
-            enabled: false
+        host: smtp.qq.com
+        port: 587
+        username: 993505105@qq.com
+        password: hugntajdklvlbfgf
+        protocol: smtp
+        tls: true
+        auth: true
+        from: 993505105@qq.com
+    messages:
+        cache-seconds: 1
     thymeleaf:
-        mode: XHTML
+        cache: false
 
 liquibase:
-    contexts: test
-
-security:
-    basic:
-        enabled: false
+    contexts: dev
 
 server:
-    port: 10344
-    address: localhost
+    port: 8082
+
+payment:
+   p1_MerId: 10001126856
+   keyValue: 69cl522AV6q613Ii4W6u8K6XuW8vM1N6bFgyv769220IuYe9u37N4y7rI4Pl
+   p8_Url: http\://localhost\:8082/#/orderback
+
 
 # ===================================================================
 # JHipster specific properties
 # ===================================================================
 
 jhipster:
-    async:
-        corePoolSize: 2
-        maxPoolSize: 50
-        queueCapacity: 10000
-    security:
-        rememberme:
-            # security key (this key should be unique for your application, and kept secret)
-            key: 20ef87bc0d615edcf8a40175030893910828cfcf
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: citygarden_web@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
-    swagger:
-        title: citygarden_web API
-        description: citygarden_web API documentation
-        version: 0.0.1
-        termsOfServiceUrl:
-        contact:
-        license:
-        licenseUrl:
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: citygarden_web

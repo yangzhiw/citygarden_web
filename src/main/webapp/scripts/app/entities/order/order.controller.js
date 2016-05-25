@@ -4,7 +4,7 @@ angular.module('citygardenWebApp')
     .controller('OrderController', function ($scope, $state, Order,Payment,orderData) {
 
         $scope.orders = [];
-
+        $scope.isInit = true;
         $scope.orderStatus = [
             '',
             '付款',
@@ -20,7 +20,9 @@ angular.module('citygardenWebApp')
         };
         $scope.loadAll();
 
-
+        $scope.selectOrderStatus = function(){
+            $scope.isInit = false;
+        };
 
  })
     .controller('OrderPayController', function ($scope,$stateParams, $state, Order,Payment,md5) {

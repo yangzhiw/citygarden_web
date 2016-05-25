@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -71,6 +72,18 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
+
+
+    @Field("total_price")
+    private double totalPrice;
+
+    @DBRef(lazy = true)
+    @Field("delivery_address")
+    private DeliveryAddress deliveryAddress;
+
+    @DBRef(lazy = true)
+    @Field("user_level_definition")
+    private UserLevalDefinition userLevalDefinition;
 
     public String getId() {
         return id;
@@ -176,6 +189,34 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public DeliveryAddress getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public UserLevalDefinition getUserLevalDefinition() {
+        return userLevalDefinition;
+    }
+
+    public void setUserLevalDefinition(UserLevalDefinition userLevalDefinition) {
+        this.userLevalDefinition = userLevalDefinition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -202,14 +243,22 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-            "login='" + login + '\'' +
+            "id='" + id + '\'' +
+            ", login='" + login + '\'' +
+            ", password='" + password + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
-            ", mobile='" +mobile + '\'' +
-            ", activated='" + activated + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
-            "}";
+            ", resetKey='" + resetKey + '\'' +
+            ", resetDate=" + resetDate +
+            ", authorities=" + authorities +
+            ", totalPrice=" + totalPrice +
+            ", deliveryAddress=" + deliveryAddress +
+            ", userLevalDefinition=" + userLevalDefinition +
+            '}';
     }
 }

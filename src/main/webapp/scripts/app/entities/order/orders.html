@@ -1,14 +1,24 @@
 <div class="col-md-12">
-    <div class="col-md-3" ng-repeat="order in orders">
-        <!--<img ng-src="data:image/jpg;base64,{{order.dish.dishPhoto}}"  class="col-md-3"/>-->
+    <h2 class="text-center" style="color: #c7254e">我的订单</h2>
+    <hr/>
+    <div class="col-lg-offset-10">
+        <label>查看订单</label>
+        <select ng-model="order.orderStatus" style="width: 215px; height: 30px" ng-change="selectOrderStatus()">
+            <option value="1">未付款订单</option>
+            <option value="2">未发货订单</option>
+            <option value="3">确认收货</option>
+            <option value="4">交易成功</option>
+        </select>
     </div>
+    <hr/>
     <div class="col-md-9 col-md-offset-1">
 
 
-            <div ng-repeat="order in orders">
+            <div ng-repeat="order in orders | filter : {orderStatus : order.orderStatus}" ng-show="order.orderStatus == 1" ng-if="isInit">
                 <div>
+                    <span class="col-md-1">No&nbsp;{{$index +1}}</span>
                     <span>订单编号:{{order.id}}</span>
-                    <sapn  class="col-md-2">订单金额：{{order.totalPrice}}</sapn>
+                    <sapn  class="col-md-3" style="color: #c7254e">订单金额：{{order.totalPrice}} ￥</sapn>
                     <span  class="col-md-2">
                         <span ng-if="order.orderStatus == 1">
                             <a ui-sref="orderpay({id:order.id})">{{orderStatus[order.orderStatus]}}</a>
@@ -20,19 +30,57 @@
                     <div>
                         <table class="table table-bordered">
                             <tr>
-                                <td class="info col-md-1">Num</td>
-                                <td class="info col-md-2">名称</td>
-                                <td class="info col-md-1">价格</td>
-                                <td class="info col-md-1">数量</td>
-                                <td class="info col-md-1">小计</td>
+                                <td class="info col-md-1" align="center" valign="middle">Num</td>
+                                <td class="info col-md-2" align="center" valign="middle">名称</td>
+                                <td class="info col-md-1" align="center" valign="middle">价格</td>
+                                <td class="info col-md-1" align="center" valign="middle">数量</td>
+                                <td class="info col-md-1" align="center" valign="middle" >小计</td>
                             </tr>
 
                             <tr ng-repeat="orderItem in order.orderItemList">
-                                <td class=" col-md-1">{{$index + 1}}</td>
-                                <td class=" col-md-2">{{orderItem.dish.chineseName}}</td>
-                                <td class=" col-md-1">{{orderItem.count}}</td>
-                                <td class=" col-md-1">{{orderItem.dish.discountPrice}}</td>
-                                <td class=" col-md-1">{{orderItem.subtotal}}</td>
+                                <td class=" col-md-1">{{$index + 1}}
+                                    <img ng-src="data:image/jpg;base64,{{orderItem.dish.dishPhoto}}" style="height: 50px;width: 50px"/>
+                                </td>
+                                <td class=" col-md-2" align="center" valign="middle">{{orderItem.dish.chineseName}}</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.count}}</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.dish.discountPrice}}￥</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.subtotal}}￥</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="order in orders | filter : {orderStatus : order.orderStatus}" ng-if="!isInit">
+                <div>
+                    <span class="col-md-1">No&nbsp;{{$index +1}}</span>
+                    <span>订单编号:{{order.id}}</span>
+                    <sapn  class="col-md-3" style="color: #c7254e">订单金额：{{order.totalPrice}} ￥</sapn>
+                    <span  class="col-md-2">
+                        <span ng-if="order.orderStatus == 1">
+                            <a ui-sref="orderpay({id:order.id})">{{orderStatus[order.orderStatus]}}</a>
+                        </span>
+                        <span ng-if="order.orderStatus != 1">
+                            {{orderStatus[order.orderStatus]}}
+                        </span>
+                    </span>
+                    <div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="info col-md-1" align="center" valign="middle">Num</td>
+                                <td class="info col-md-2" align="center" valign="middle">名称</td>
+                                <td class="info col-md-1" align="center" valign="middle">价格</td>
+                                <td class="info col-md-1" align="center" valign="middle">数量</td>
+                                <td class="info col-md-1" align="center" valign="middle" >小计</td>
+                            </tr>
+
+                            <tr ng-repeat="orderItem in order.orderItemList">
+                                <td class=" col-md-1">{{$index + 1}}
+                                    <img ng-src="data:image/jpg;base64,{{orderItem.dish.dishPhoto}}" style="height: 50px;width: 50px"/>
+                                </td>
+                                <td class=" col-md-2" align="center" valign="middle">{{orderItem.dish.chineseName}}</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.count}}</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.dish.discountPrice}}￥</td>
+                                <td class=" col-md-1" align="center" valign="middle">{{orderItem.subtotal}}￥</td>
                             </tr>
                         </table>
                     </div>
