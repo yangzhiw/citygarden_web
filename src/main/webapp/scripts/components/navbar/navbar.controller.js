@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('citygardenWebApp')
-    .controller('NavbarController', function ($rootScope,$scope, $location, $state,Auth, Principal,DishSearch,DishData,ProvideMerchant, ENV) {
+    .controller('NavbarController', function ($rootScope,$scope, $location, $state,Auth, Principal,DishSearch,DishData,ProvideMerchant, UserLevel,ENV) {
         $scope.isAuthenticated = Principal.isAuthenticated;
         $scope.$state = $state;
         $scope.inProduction = ENV === 'prod';
@@ -9,10 +9,16 @@ angular.module('citygardenWebApp')
         $rootScope.dishData = [];
         $scope.provides = [];
         $scope.isShow = false;
+        $scope.userLevel = {};
 
         $scope.loadAll = function(){
             ProvideMerchant.query(function(result){
                 $scope.provides = result;
+                console.log(result);
+            });
+
+            UserLevel.query(function(result){
+                $scope.userLevel = result;
                 console.log(result);
             })
         };

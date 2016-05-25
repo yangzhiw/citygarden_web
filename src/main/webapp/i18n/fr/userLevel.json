@@ -1,0 +1,22 @@
+{
+    "citygardenWebApp": {
+        "userLevel" : {
+            "home": {
+                "title": "UserLevels",
+                "createLabel": "Créer un nouveau UserLevel",
+                "createOrEditLabel": "Créer ou éditer un UserLevel",
+                "search": "Search for UserLevel"
+            },
+            "created": "Un nouveau UserLevel a été créé avec l'identifiant {{ param }}",
+            "updated": "Le UserLevel avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le UserLevel avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le UserLevel {{ id }} ?"
+            },
+            "detail": {
+                "title": "UserLevel"
+            }
+        }
+    }
+}
+

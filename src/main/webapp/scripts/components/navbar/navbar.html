@@ -57,6 +57,8 @@
                         <!--&#xA0;<span translate="global.menu.entities.cartDetails">Cart details</span></a></li>-->
                         <!--<li ui-sref-active="active" ><a ui-sref="provideMerchant" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
                         <!--&#xA0;<span translate="global.menu.entities.provideMerchant">Provide merchant</span></a></li>-->
+                        <!--<li ui-sref-active="active" ><a ui-sref="userLevel" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>-->
+                        <!--&#xA0;<span translate="global.menu.entities.userLevel">User level</span></a></li>-->
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -66,6 +68,7 @@
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm">
                                 账户
+                                <span style="color: #c7254e"  ng-switch-when="true">({{userLevel.userLevel}})</span>
                             </span>
                             <b class="caret"></b>
                         </span>

@@ -18,6 +18,7 @@
                 "cart": "Cart",
                 "cartDetails": "CartDetails",
                 "provideMerchant": "ProvideMerchant",
+                "userLevel": "UserLevel",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
