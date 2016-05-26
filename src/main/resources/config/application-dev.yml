@@ -20,7 +20,7 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            uri: mongodb://114.215.88.199:27017
+            uri: mongodb://localhost:27017
             database: citygarden_web
     mail:
         host: smtp.qq.com
@@ -40,7 +40,7 @@ liquibase:
     contexts: dev
 
 server:
-    port: 80
+    port: 8082
 
 payment:
    p1_MerId: 10001126856
