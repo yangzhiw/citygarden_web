@@ -67,7 +67,7 @@ public class AccountResource {
                     userDTO.getLangKey());
                     String baseUrl = request.getScheme() + // "http"
                     "://" +                                // "://"
-                    request.getServerName() +              // "myhost"
+                    "114.215.88.199" +              // "myhost"
                     ":" +                                  // ":"
                     request.getServerPort() +              // "80"
                     request.getContextPath();              // "/myContextPath" or "" if deployed in root context
