@@ -46,7 +46,7 @@ public class ProvideMerchantService {
      */
     public List<ProvideMerchantDTO> findAll(){
         log.debug("Request to get all ProvideMerchants");
-        List<ProvideMerchant> provideMerchants =provideMerchantRepository.findAll();
+        List<ProvideMerchant> provideMerchants =provideMerchantRepository.findAllByOrderByLastModifiedDateDesc();
         List<ProvideMerchantDTO> provideMerchantDTOs = new ArrayList<>(0);
         provideMerchants.forEach(x -> {
             ProvideMerchantDTO provideMerchantDTO = new ProvideMerchantDTO();

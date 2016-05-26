@@ -98,7 +98,7 @@ public class OrderResource {
     public List<Order> getAllOrders() {
         log.debug("REST request to get all Orders");
         String username = SecurityUtils.getCurrentUserLogin();
-        return orderRepository.findByUsername(username);
+        return orderRepository.findByUsernameOrderByLastModifiedDateDesc(username);
     }
 
 

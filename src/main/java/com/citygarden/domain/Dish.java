@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 
 @Document(collection = "T_DISH")
-public class Dish implements Serializable {
+public class Dish extends AbstractAuditingEntity {
 
     @Id
     private String id;
