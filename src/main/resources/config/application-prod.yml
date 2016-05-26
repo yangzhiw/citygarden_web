@@ -20,13 +20,17 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://114.215.88.199:27017
             database: citygarden_web
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.qq.com
+        port: 587
+        username: 993505105@qq.com
+        password: hugntajdklvlbfgf
+        protocol: smtp
+        tls: true
+        auth: true
+        from: 993505105@qq.com
     thymeleaf:
         cache: true
 
@@ -34,10 +38,15 @@ liquibase:
     contexts: prod
 
 server:
-    port: 8080
+    port: 80
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+
+payment:
+   p1_MerId: 10001126856
+   keyValue: 69cl522AV6q613Ii4W6u8K6XuW8vM1N6bFgyv769220IuYe9u37N4y7rI4Pl
+   p8_Url: http\://localhost\:8082/#/orderback
 
 # ===================================================================
 # JHipster specific properties
