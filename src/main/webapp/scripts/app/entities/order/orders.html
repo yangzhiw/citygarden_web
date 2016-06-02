@@ -29,6 +29,9 @@
                         <span ng-if="order.orderStatus == 3">
                             <a ng-click="ensureDelivery(order)">{{orderStatus[order.orderStatus]}}</a>
                         </span>
+                        <span ng-if="order.orderStatus == 1">
+                            <a ng-click="deleteOrder(order.id)">删除此订单</a>
+                        </span>
                     </span>
                     <div>
                         <table class="table table-bordered">

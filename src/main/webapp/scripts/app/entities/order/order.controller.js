@@ -11,7 +11,7 @@ angular.module('citygardenWebApp')
             '未发货',
             '确认收货',
             '订单完成'
-        ]
+        ];
         $scope.loadAll = function() {
             Order.query(function(result) {
                $scope.orders = result;
@@ -30,8 +30,14 @@ angular.module('citygardenWebApp')
             console.log($scope.order);
             Order.update($scope.order,function(result){
                $state.reload();
-            })
-        }
+            });
+        };
+
+        $scope.deleteOrder = function(id){
+           Order.delete({id:id},function(){
+
+           });
+        };
 
  })
     .controller('OrderPayController', function ($scope,$stateParams, $state, Order,Payment,md5) {
@@ -41,14 +47,14 @@ angular.module('citygardenWebApp')
             id:"",
             total : "",
             bankCode : ""
-        }
+        };
 
         $scope.load = function(){
             Order.get({id : $stateParams.id},function(result){
                 $scope.order = result;
                 console.log(result);
             });
-        }
+        };
 
         $scope.load();
 
@@ -62,8 +68,8 @@ angular.module('citygardenWebApp')
                 console.log(result);
                 //   window.location.href = result.payUrl;
                 window.open(result.payUrl,'_blank');
-            })
-        }
+            });
+        };
 
         $scope.bcpay = function(){
             console.log("ll");
@@ -93,7 +99,7 @@ angular.module('citygardenWebApp')
                 console.log(result);
             } ,function() {
                 $state.go('orderpay', {id:$scope.order.id}, { reload: true });
-            })
+            });
 
             /**
              * click调用错误返回：默认行为console.log(err)
@@ -101,7 +107,7 @@ angular.module('citygardenWebApp')
             BC.err = function(err) {
                 //err 为object, 例 ｛”ERROR“ : "xxxx"｝;
                 alert(err.ERROR);
-            }
-        }
+            };
+        };
 
-    })
+    });

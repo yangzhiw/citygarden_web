@@ -47,7 +47,8 @@ public class CartToAccountResource {
         }
         toAccount.setUsername(SecurityUtils.getCurrentUserLogin());
         toAccount.setIsCheck(CloudxEnums.CheckEnum.ISCHECK);
-        CartToAccount cartToAccount = cartToAccountRepository.findByIsCheck(CloudxEnums.CheckEnum.ISCHECK);
+        CartToAccount cartToAccount = cartToAccountRepository.findByUsernameAndIsCheck(
+            SecurityUtils.getCurrentUserLogin(),CloudxEnums.CheckEnum.ISCHECK);
         if(cartToAccount != null){
             cartToAccount.setIsCheck(CloudxEnums.CheckEnum.UNCHECK);
             cartToAccountRepository.save(cartToAccount);

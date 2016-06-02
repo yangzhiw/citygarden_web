@@ -16,4 +16,6 @@ public interface CartToAccountRepository  extends MongoRepository<CartToAccount,
     CartToAccount findByIsCheck(String ischeck);
 
     CartToAccount findByIsCheckAndUsername(String ischeck, String username);
+
+    CartToAccount findByUsernameAndIsCheck(String currentUserLogin, String ischeck);
 }
